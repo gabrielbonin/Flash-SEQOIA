@@ -368,6 +368,72 @@
   .track-notfound.show{display:block}
   .track-disclaimer{margin-top:22px;font-size:11.5px;color:var(--muted-2);line-height:1.5}
 
+  /* ================== CUBAGEM ================== */
+  .cubagem{padding:110px 0;background:var(--bg-soft);border-top:1px solid var(--line)}
+  .cub-box{
+    margin-top:46px;background:var(--card);border:1px solid var(--line);
+    border-radius:24px;padding:42px;
+  }
+  .cub-note{font-size:13px;color:var(--muted-2);margin-top:16px;line-height:1.6}
+  .cub-note b{color:var(--muted)}
+  .cub-head,.cub-row{
+    display:grid;grid-template-columns:0.9fr 1fr 1fr 1fr 1.1fr 1.1fr 40px;
+    gap:12px;align-items:center;
+  }
+  .cub-head{margin-bottom:10px}
+  .cub-head span{
+    font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--muted-2);
+    text-transform:uppercase;letter-spacing:0.08em;
+  }
+  .cub-head span.out{color:var(--orange-light)}
+  .cub-row{margin-bottom:10px}
+  .cub-input{
+    background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;
+    padding:13px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;
+    color:var(--white);outline:none;transition:border-color .2s;width:100%;min-width:0;
+  }
+  .cub-input:focus{border-color:var(--orange)}
+  .cub-input::placeholder{color:var(--muted-2)}
+  .cub-out{
+    background:rgba(243,112,33,0.06);border:1px solid rgba(243,112,33,0.18);
+    border-radius:12px;padding:13px 14px;font-family:'JetBrains Mono',monospace;
+    font-size:14px;color:var(--orange-light);white-space:nowrap;overflow:hidden;
+  }
+  .cub-del{
+    width:34px;height:34px;border-radius:10px;border:1px solid var(--line);
+    color:var(--muted-2);font-size:16px;display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s;
+  }
+  .cub-del:hover{border-color:rgba(239,68,68,0.5);color:#FCA5A5}
+  .cub-add{
+    display:inline-flex;align-items:center;gap:8px;margin-top:8px;
+    font-size:13.5px;font-weight:600;color:var(--green);
+  }
+  .cub-add:hover{opacity:.85}
+  .cub-add .plus-ico{
+    width:20px;height:20px;border-radius:50%;border:1.5px solid var(--green);
+    display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;
+  }
+  .cub-total{
+    display:grid;grid-template-columns:0.9fr 1fr 1fr 1fr 1.1fr 1.1fr 40px;gap:12px;
+    margin-top:18px;padding-top:18px;border-top:1px solid var(--line);align-items:center;
+  }
+  .cub-total .t-label{
+    grid-column:1/5;text-align:right;font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;
+  }
+  .cub-total .cub-out{background:rgba(243,112,33,0.12);border-color:rgba(243,112,33,0.35);color:var(--white);font-weight:600}
+  @media (max-width:880px){
+    .cub-head{display:none}
+    .cub-row,.cub-total{grid-template-columns:1fr 1fr;gap:10px}
+    .cub-row .cub-input,.cub-row .cub-out{grid-column:auto}
+    .cub-del{grid-column:2;justify-self:end}
+    .cub-total .t-label{grid-column:1/3;text-align:left}
+    .cub-input,.cub-out{font-size:13px}
+    .cub-box{padding:28px 22px}
+    .cub-row{border-bottom:1px dashed var(--line);padding-bottom:12px;margin-bottom:12px}
+  }
+
   /* ================== CTA CONTATO ================== */
   .contato{padding:110px 0}
   .cta-band{
@@ -419,6 +485,7 @@
       <a href="#frota">Frota</a>
       <a href="#porque">Por que a Carriers</a>
       <a href="#rastreio">Rastreamento</a>
+      <a href="#cubagem">Cubagem</a>
       <a href="#contato">Contato</a>
     </div>
     <div class="nav-actions">
@@ -687,6 +754,32 @@
   </div>
 </section>
 
+<!-- ================== CUBAGEM ================== -->
+<section class="cubagem" id="cubagem" data-screen-label="08 Cubagem">
+  <div class="wrap-narrow">
+    <div class="reveal">
+      <div class="sec-label">Ferramenta</div>
+      <h2 class="sec-title">Cálculo de cubagem.</h2>
+      <p class="sec-sub">Cubagem é a relação entre o peso e o volume da carga a ser transportada. A fórmula utilizada é: <b style="color:var(--text)">altura × largura × profundidade × fator de cubagem</b>. No transporte rodoviário, o fator padrão corresponde a <b style="color:var(--text)">300</b>.</p>
+    </div>
+    <div class="cub-box reveal">
+      <div class="cub-head">
+        <span>Qtd. volumes</span><span>Altura (m)</span><span>Largura (m)</span><span>Profundidade (m)</span>
+        <span class="out">Cubagem (m³)</span><span class="out">Peso cubado (kg)</span><span></span>
+      </div>
+      <div id="cub-rows"></div>
+      <button class="cub-add" id="cub-add" type="button"><span class="plus-ico">+</span> Adicionar linha</button>
+      <div class="cub-total">
+        <div class="t-label">Total</div>
+        <div class="cub-out" id="cub-total-m3">0,0000</div>
+        <div class="cub-out" id="cub-total-kg">0,00</div>
+        <div></div>
+      </div>
+      <div class="cub-note">* No caso de o <b>peso cubado</b> ser maior que o <b>peso real</b>, considera-se o peso cubado para fins de frete.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ================== CONTATO ================== -->
 <section class="contato" id="contato" data-screen-label="08 Contato">
   <div class="wrap">
@@ -905,6 +998,61 @@
   document.querySelectorAll('[data-fill]').forEach(c=>{
     c.addEventListener('click', ()=>{ inp.value=c.dataset.fill; go(); });
   });
+})();
+
+/* ===== Cálculo de Cubagem =====
+   Cubagem (m³) = qtd × altura × largura × profundidade
+   Peso cubado (kg) = cubagem × FATOR (rodoviário padrão: 300) */
+(function(){
+  const FATOR = 300;
+  const rows = document.getElementById('cub-rows');
+  const addBtn = document.getElementById('cub-add');
+  const totM3 = document.getElementById('cub-total-m3');
+  const totKg = document.getElementById('cub-total-kg');
+  if(!rows) return;
+
+  const fmt = (n,d) => n.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+  const num = v => {
+    const n = parseFloat(String(v).replace(/\./g,'').replace(',','.'));
+    return isFinite(n) && n>0 ? n : 0;
+  };
+
+  function addRow(){
+    const row = document.createElement('div');
+    row.className = 'cub-row';
+    row.innerHTML = `
+      <input class="cub-input" data-f="qtd"  type="text" inputmode="decimal" placeholder="1" aria-label="Quantidade de volumes"/>
+      <input class="cub-input" data-f="alt"  type="text" inputmode="decimal" placeholder="0,00" aria-label="Altura em metros"/>
+      <input class="cub-input" data-f="larg" type="text" inputmode="decimal" placeholder="0,00" aria-label="Largura em metros"/>
+      <input class="cub-input" data-f="prof" type="text" inputmode="decimal" placeholder="0,00" aria-label="Profundidade em metros"/>
+      <div class="cub-out" data-out="m3">0,0000</div>
+      <div class="cub-out" data-out="kg">0,00</div>
+      <button class="cub-del" type="button" title="Remover linha" aria-label="Remover linha">×</button>`;
+    rows.appendChild(row);
+  }
+
+  function calc(){
+    let sumM3 = 0, sumKg = 0;
+    rows.querySelectorAll('.cub-row').forEach(row=>{
+      const g = f => num(row.querySelector(`[data-f="${f}"]`).value);
+      const qtd = g('qtd'), m3 = qtd * g('alt') * g('larg') * g('prof');
+      const kg = m3 * FATOR;
+      row.querySelector('[data-out="m3"]').textContent = fmt(m3,4);
+      row.querySelector('[data-out="kg"]').textContent = fmt(kg,2);
+      sumM3 += m3; sumKg += kg;
+    });
+    totM3.textContent = fmt(sumM3,4);
+    totKg.textContent = fmt(sumKg,2);
+  }
+
+  rows.addEventListener('input', calc);
+  rows.addEventListener('click', e=>{
+    if(e.target.classList.contains('cub-del')){
+      if(rows.children.length>1){ e.target.closest('.cub-row').remove(); calc(); }
+    }
+  });
+  addBtn.addEventListener('click', addRow);
+  addRow(); /* linha inicial */
 })();
 </script>
 </body>
