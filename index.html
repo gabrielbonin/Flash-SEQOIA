@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carriers — Logística B2B com controle total</title>
+<meta name="description" content="A Carriers é uma transportadora com atuação nacional, especializada em operações B2B: Expresso, FTL e Operações Dedicadas, com torre de controle 24/7 e rastreamento em tempo real." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0A0A0F;
+    --bg-soft:#101018;
+    --card:#12121B;
+    --card-hover:#161624;
+    --line:rgba(255,255,255,0.07);
+    --line-strong:rgba(255,255,255,0.13);
+    --orange:#F37021;
+    --orange-dark:#D85A11;
+    --orange-light:#FFAB6B;
+    --white:#FFFFFF;
+    --text:#E7E7EC;
+    --muted:#A1A1AA;
+    --muted-2:#71717A;
+    --green:#22C55E;
+    --yellow:#EAB308;
+    --red:#EF4444;
+    --max:1240px;
+    --max-narrow:900px;
+    --pad-x:24px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);color:var(--text);
+    line-height:1.5;letter-spacing:-0.008em;overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+  input{font-family:inherit}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
+  .wrap-narrow{max-width:var(--max-narrow);margin:0 auto;padding:0 var(--pad-x)}
+
+  /* Section headers */
+  .sec-label{
+    font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;
+    color:var(--orange);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px;
+  }
+  .sec-title{
+    font-size:clamp(30px,4vw,48px);font-weight:700;letter-spacing:-0.03em;
+    line-height:1.12;color:var(--white);
+  }
+  .sec-sub{font-size:clamp(15px,1.4vw,18px);color:var(--muted);margin-top:14px;max-width:640px}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ================== NAV ================== */
+  .nav{
+    position:sticky;top:0;z-index:1000;height:60px;
+    background:rgba(10,10,15,0.72);
+    backdrop-filter:saturate(160%) blur(20px);
+    -webkit-backdrop-filter:saturate(160%) blur(20px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{display:flex;align-items:center;justify-content:space-between;height:100%;max-width:var(--max);margin:0 auto;padding:0 var(--pad-x)}
+  .nav-menu{display:flex;flex:1;justify-content:center}
+  .nav-menu a{font-size:13px;font-weight:400;color:var(--muted);padding:0 15px;transition:color .2s;white-space:nowrap}
+  .nav-menu a:hover{color:var(--white)}
+  .nav-actions{display:flex;gap:16px;align-items:center}
+  .nav-cta{
+    padding:8px 18px;border-radius:980px;background:var(--orange);color:#fff;
+    font-size:13px;font-weight:600;transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--orange-dark)}
+  @media (max-width:880px){.nav-menu{display:none}}
+
+  /* Logo mock */
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-0.02em;color:var(--white)}
+  .logo-mark{
+    width:30px;height:30px;border-radius:8px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--orange) 0%,var(--orange-dark) 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .logo-mark svg{width:16px;height:16px}
+  .logo span em{font-style:normal;color:var(--orange)}
+
+  /* ================== HERO ================== */
+  .hero{
+    position:relative;min-height:92vh;display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;
+    background:url('assets/hub-overview-wide.jpg') center/cover no-repeat;
+    filter:saturate(0.6) brightness(0.5);
+  }
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(1200px 600px at 20% 30%, rgba(243,112,33,0.14), transparent 60%),
+      linear-gradient(180deg, rgba(10,10,15,0.72) 0%, rgba(10,10,15,0.55) 45%, var(--bg) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;padding:120px 0 100px;width:100%}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--orange-light);
+    border:1px solid rgba(243,112,33,0.35);background:rgba(243,112,33,0.08);
+    padding:7px 14px;border-radius:980px;margin-bottom:26px;
+    animation:fadeUp .9s .1s cubic-bezier(.4,0,.2,1) both;
+  }
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{
+    font-size:clamp(42px,6.4vw,88px);font-weight:800;letter-spacing:-0.04em;
+    line-height:1.04;color:var(--white);max-width:900px;
+    animation:fadeUp 1s .22s cubic-bezier(.4,0,.2,1) both;
+  }
+  .hero h1 em{font-style:normal;color:var(--orange)}
+  .hero-lede{
+    font-size:clamp(16px,1.7vw,21px);color:var(--muted);max-width:640px;
+    margin-top:24px;line-height:1.55;
+    animation:fadeUp 1s .36s cubic-bezier(.4,0,.2,1) both;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;animation:fadeUp 1s .5s cubic-bezier(.4,0,.2,1) both}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 28px;border-radius:980px;font-size:15px;font-weight:600;
+    transition:background .2s,border-color .2s,transform .2s;
+  }
+  .btn-primary{background:var(--orange);color:#fff}
+  .btn-primary:hover{background:var(--orange-dark);transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line-strong);color:var(--text)}
+  .btn-ghost:hover{border-color:rgba(255,255,255,0.3)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @media (prefers-reduced-motion:reduce){
+    .hero-badge,.hero h1,.hero-lede,.hero-ctas{animation:none}
+  }
+
+  /* ================== STATS ================== */
+  .stats{padding:90px 0 30px}
+  .stats-note{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2);
+    margin-top:26px;letter-spacing:0.04em;
+  }
+  .stats-grid{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  }
+  .stat{background:var(--bg-soft);padding:34px 26px;transition:background .3s}
+  .stat:hover{background:var(--card-hover)}
+  .stat-num{
+    font-family:'JetBrains Mono',monospace;font-size:clamp(28px,3vw,42px);
+    font-weight:600;color:var(--white);letter-spacing:-0.03em;line-height:1;
+  }
+  .stat-num .suffix{color:var(--orange);font-size:0.72em}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.4}
+  @media (max-width:1080px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:680px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat{padding:26px 20px}}
+
+  /* ================== CONTROLE (diferenciais) ================== */
+  .controle{padding:110px 0}
+  .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+  .dcard{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:34px 30px;transition:border-color .3s,transform .3s,background .3s;
+    position:relative;overflow:hidden;
+  }
+  .dcard:hover{border-color:rgba(243,112,33,0.4);transform:translateY(-4px);background:var(--card-hover)}
+  .dcard-icon{
+    width:46px;height:46px;border-radius:12px;margin-bottom:22px;
+    background:rgba(243,112,33,0.12);border:1px solid rgba(243,112,33,0.25);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .dcard-icon svg{width:22px;height:22px;stroke:var(--orange)}
+  .dcard h3{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-0.02em;margin-bottom:12px}
+  .dcard p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .dcard-tag{
+    position:absolute;top:26px;right:26px;
+    font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--orange-light);
+    background:rgba(243,112,33,0.1);padding:4px 10px;border-radius:980px;
+    letter-spacing:0.08em;
+  }
+  @media (max-width:880px){.cards-3{grid-template-columns:1fr}}
+
+  /* ================== SERVIÇOS ================== */
+  .servicos{padding:110px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+  .svc{
+    background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    display:flex;flex-direction:column;transition:border-color .3s,transform .3s;
+  }
+  .svc:hover{border-color:rgba(243,112,33,0.4);transform:translateY(-4px)}
+  .svc-img{height:170px;position:relative;overflow:hidden}
+  .svc-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.7) brightness(0.75);transition:transform .6s cubic-bezier(.4,0,.2,1)}
+  .svc:hover .svc-img img{transform:scale(1.05)}
+  .svc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,var(--card) 100%)}
+  .svc-body{padding:6px 28px 30px;flex:1;display:flex;flex-direction:column}
+  .svc-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px}
+  .svc h3{font-size:22px;font-weight:700;color:var(--white);letter-spacing:-0.02em;margin-bottom:6px}
+  .svc-tag{font-size:13.5px;color:var(--orange-light);margin-bottom:16px;font-weight:500}
+  .svc ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .svc li{
+    font-size:13.5px;color:var(--muted);line-height:1.5;padding-left:20px;position:relative;
+  }
+  .svc li::before{
+    content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;
+    background:var(--orange);opacity:.8;
+  }
+  @media (max-width:980px){.svc-grid{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}}
+
+  /* ================== FROTA ================== */
+  .frota{padding:110px 0}
+  .frota-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+  .frota-big{display:flex;flex-direction:column;gap:18px}
+  .frota-card{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  }
+  .frota-card .n{font-family:'JetBrains Mono',monospace;font-size:clamp(36px,4vw,54px);font-weight:600;color:var(--white);letter-spacing:-0.03em;line-height:1}
+  .frota-card .n .plus{color:var(--orange)}
+  .frota-card .l{font-size:14px;color:var(--muted)}
+  .frota-card.hl{border-color:rgba(243,112,33,0.35);background:linear-gradient(135deg,rgba(243,112,33,0.08),var(--card) 55%)}
+  .frota-benefits{margin-top:8px;display:flex;flex-direction:column;gap:12px}
+  .frota-benefits div{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:var(--muted);line-height:1.5}
+  .frota-benefits svg{width:18px;height:18px;stroke:var(--green);flex-shrink:0;margin-top:2px}
+  .fleet-table{border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .fleet-table .ft-head{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 26px;background:var(--card);border-bottom:1px solid var(--line);
+  }
+  .fleet-table .ft-head h4{font-size:14px;font-weight:600;color:var(--white)}
+  .fleet-table .ft-head span{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted-2)}
+  .fleet-rows{display:grid;grid-template-columns:1fr 1fr}
+  .fleet-row{
+    display:flex;justify-content:space-between;padding:13px 26px;
+    font-size:13.5px;color:var(--muted);border-bottom:1px solid var(--line);
+  }
+  .fleet-row:nth-child(odd){border-right:1px solid var(--line)}
+  .fleet-row:nth-last-child(-n+2){border-bottom:0}
+  .fleet-row b{font-family:'JetBrains Mono',monospace;font-weight:500;color:var(--text)}
+  @media (max-width:980px){.frota-grid{grid-template-columns:1fr}}
+  @media (max-width:560px){.fleet-rows{grid-template-columns:1fr}.fleet-row:nth-child(odd){border-right:0}.fleet-row:nth-last-child(-n+2){border-bottom:1px solid var(--line)}.fleet-row:last-child{border-bottom:0}}
+
+  /* ================== POR QUE ================== */
+  .porque{padding:110px 0;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .pq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:52px}
+  .pq{
+    background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 32px;
+    transition:border-color .3s;
+  }
+  .pq:hover{border-color:rgba(243,112,33,0.35)}
+  .pq-num{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--orange);margin-bottom:16px;letter-spacing:0.08em}
+  .pq h3{font-size:19px;font-weight:700;color:var(--white);letter-spacing:-0.02em;margin-bottom:14px}
+  .pq ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .pq li{font-size:14px;color:var(--muted);line-height:1.55;padding-left:18px;position:relative}
+  .pq li::before{content:'▪';position:absolute;left:0;color:var(--orange);font-size:11px;top:2px}
+  @media (max-width:880px){.pq-grid{grid-template-columns:1fr}}
+
+  /* ================== RASTREIO ================== */
+  .rastreio{padding:110px 0}
+  .track-box{
+    margin-top:46px;background:var(--card);border:1px solid var(--line);
+    border-radius:24px;padding:42px;
+  }
+  .track-form{display:flex;gap:12px;flex-wrap:wrap}
+  .track-input{
+    flex:1;min-width:240px;background:var(--bg);border:1px solid var(--line-strong);
+    border-radius:14px;padding:16px 20px;font-family:'JetBrains Mono',monospace;
+    font-size:15px;color:var(--white);letter-spacing:0.04em;
+    transition:border-color .2s;outline:none;text-transform:uppercase;
+  }
+  .track-input::placeholder{color:var(--muted-2);text-transform:none;letter-spacing:0}
+  .track-input:focus{border-color:var(--orange)}
+  .track-btn{
+    padding:16px 32px;border-radius:14px;background:var(--orange);color:#fff;
+    font-size:15px;font-weight:600;transition:background .2s;
+  }
+  .track-btn:hover{background:var(--orange-dark)}
+  .track-hint{margin-top:14px;font-size:12.5px;color:var(--muted-2)}
+  .track-hint code{
+    font-family:'JetBrains Mono',monospace;color:var(--orange-light);cursor:pointer;
+    background:rgba(243,112,33,0.08);padding:2px 8px;border-radius:6px;margin:0 3px;
+    border:1px solid rgba(243,112,33,0.2);
+  }
+  .track-hint code:hover{background:rgba(243,112,33,0.16)}
+
+  /* loading */
+  .track-loading{display:none;margin-top:34px;align-items:center;gap:14px;color:var(--muted)}
+  .track-loading.show{display:flex}
+  .spinner{
+    width:22px;height:22px;border-radius:50%;
+    border:2.5px solid var(--line-strong);border-top-color:var(--orange);
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* result */
+  .track-result{display:none;margin-top:38px}
+  .track-result.show{display:block}
+  .tr-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:30px}
+  .tr-code{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--white);letter-spacing:0.03em}
+  .tr-meta{font-size:13px;color:var(--muted);margin-top:6px}
+  .tr-status{
+    font-size:13px;font-weight:600;padding:8px 16px;border-radius:980px;
+    background:rgba(243,112,33,0.12);color:var(--orange-light);border:1px solid rgba(243,112,33,0.3);
+  }
+  .tr-status.ok{background:rgba(34,197,94,0.12);color:#86EFAC;border-color:rgba(34,197,94,0.3)}
+  .tr-status.warn{background:rgba(234,179,8,0.1);color:#FDE047;border-color:rgba(234,179,8,0.3)}
+  .tr-status.err{background:rgba(239,68,68,0.1);color:#FCA5A5;border-color:rgba(239,68,68,0.3)}
+
+  /* timeline stages */
+  .stages{display:flex;gap:0;margin:34px 0 10px}
+  .stage{flex:1;position:relative;text-align:center}
+  .stage-bar{height:4px;background:var(--line-strong);position:relative;overflow:hidden}
+  .stage:first-child .stage-bar{border-radius:4px 0 0 4px}
+  .stage:last-child .stage-bar{border-radius:0 4px 4px 0}
+  .stage.done .stage-bar::after{
+    content:'';position:absolute;inset:0;background:var(--orange);
+    transform-origin:left;animation:fillBar .5s ease forwards;
+  }
+  @keyframes fillBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .stage-dot{
+    width:12px;height:12px;border-radius:50%;background:var(--line-strong);
+    margin:-8px auto 0;position:relative;z-index:2;border:3px solid var(--card);
+    transition:background .3s;
+  }
+  .stage.done .stage-dot{background:var(--orange)}
+  .stage.current .stage-dot{background:var(--orange);box-shadow:0 0 0 5px rgba(243,112,33,0.25)}
+  .stage-name{font-size:11.5px;color:var(--muted-2);margin-top:12px;line-height:1.3}
+  .stage.done .stage-name,.stage.current .stage-name{color:var(--text)}
+  @media (max-width:680px){.stage-name{font-size:9.5px}}
+
+  /* history */
+  .tr-history{margin-top:36px;border-top:1px solid var(--line);padding-top:26px}
+  .tr-history h4{font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:18px}
+  .ev{display:flex;gap:16px;padding:11px 0;border-bottom:1px solid var(--line)}
+  .ev:last-child{border-bottom:0}
+  .ev-date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted-2);white-space:nowrap;min-width:120px;padding-top:2px}
+  .ev-body{flex:1}
+  .ev-title{font-size:14px;color:var(--text);font-weight:500}
+  .ev-loc{font-size:12.5px;color:var(--muted-2);margin-top:2px}
+  .ev-sit{
+    display:inline-block;font-size:11.5px;color:#FDE047;background:rgba(234,179,8,0.1);
+    border:1px solid rgba(234,179,8,0.25);padding:2px 10px;border-radius:980px;margin-top:6px;
+  }
+
+  /* delivered proof */
+  .tr-baixa{
+    margin-top:26px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.25);
+    border-radius:16px;padding:22px 26px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .tr-baixa svg{width:22px;height:22px;stroke:var(--green);flex-shrink:0;margin-top:2px}
+  .tr-baixa .b-title{font-size:14.5px;font-weight:600;color:#86EFAC}
+  .tr-baixa .b-info{font-size:13px;color:var(--muted);margin-top:4px;line-height:1.6}
+
+  /* not found */
+  .track-notfound{display:none;margin-top:34px;padding:26px;border:1px solid rgba(239,68,68,0.3);background:rgba(239,68,68,0.06);border-radius:16px;color:#FCA5A5;font-size:14.5px}
+  .track-notfound.show{display:block}
+  .track-disclaimer{margin-top:22px;font-size:11.5px;color:var(--muted-2);line-height:1.5}
+
+  /* ================== CTA CONTATO ================== */
+  .contato{padding:110px 0}
+  .cta-band{
+    position:relative;border-radius:28px;overflow:hidden;
+    background:linear-gradient(135deg,#1a1108 0%,var(--card) 60%);
+    border:1px solid rgba(243,112,33,0.3);
+    padding:72px 60px;text-align:center;
+  }
+  .cta-band::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(700px 340px at 50% -10%, rgba(243,112,33,0.22), transparent 70%);
+  }
+  .cta-band>*{position:relative}
+  .cta-band h2{font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-0.03em;color:var(--white);line-height:1.15}
+  .cta-band p{font-size:16px;color:var(--muted);margin:18px auto 0;max-width:560px}
+  .cta-band .hero-ctas{justify-content:center;animation:none}
+  @media (max-width:680px){.cta-band{padding:52px 26px}}
+
+  /* ================== FOOTER ================== */
+  .footer{border-top:1px solid var(--line);padding:64px 0 40px;background:var(--bg-soft)}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+  .footer-brand p{font-size:13.5px;color:var(--muted-2);margin-top:16px;max-width:300px;line-height:1.6}
+  .footer h5{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px}
+  .footer-col{display:flex;flex-direction:column;gap:10px}
+  .footer-col a{font-size:13.5px;color:var(--muted-2);transition:color .2s}
+  .footer-col a:hover{color:var(--white)}
+  .footer-bottom{
+    margin-top:52px;padding-top:26px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    font-size:12px;color:var(--muted-2);
+  }
+  @media (max-width:880px){.footer-grid{grid-template-columns:1fr 1fr}}
+  @media (max-width:560px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ================== NAV ================== -->
+<nav class="nav">
+  <div class="nav-row">
+    <a href="#" class="logo" aria-label="Carriers">
+      <span class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>CARRIERS</span>
+    </a>
+    <div class="nav-menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#frota">Frota</a>
+      <a href="#porque">Por que a Carriers</a>
+      <a href="#rastreio">Rastreamento</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#contato" class="nav-cta">Fale com um especialista</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================== HERO ================== -->
+<header class="hero" data-screen-label="01 Hero">
+  <div class="hero-bg" role="presentation"></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <div class="hero-badge"><span class="dot"></span> Torre de controle ativa 24/7</div>
+      <h1>Logística B2B com <em>controle total</em> da sua operação.</h1>
+      <p class="hero-lede">Transportadora com atuação nacional, especializada em operações B2B. Mais de 15 anos conectando empresas de todos os portes com eficiência, previsibilidade e inteligência logística.</p>
+      <div class="hero-ctas">
+        <a href="#contato" class="btn btn-primary">Solicitar proposta
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8h11M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#rastreio" class="btn btn-ghost">Rastrear entrega</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================== STATS ================== -->
+<section class="stats" data-screen-label="02 Números">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      <div class="stat"><div class="stat-num"><span data-to="940">0</span></div><div class="stat-label">colaboradores</div></div>
+      <div class="stat"><div class="stat-num"><span data-to="260">0</span></div><div class="stat-label">clientes ativos</div></div>
+      <div class="stat"><div class="stat-num"><span data-to="417">0</span></div><div class="stat-label">unidades operacionais</div></div>
+      <div class="stat"><div class="stat-num"><span data-to="5000">0</span></div><div class="stat-label">motoristas e entregadores parceiros</div></div>
+      <div class="stat"><div class="stat-num"><span data-to="90">0</span><span class="suffix">mi</span></div><div class="stat-label">entregas realizadas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CONTROLE TOTAL ================== -->
+<section class="controle" id="diferenciais" data-screen-label="03 Controle Total">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Controle total da sua operação B2B</div>
+      <h2 class="sec-title">Visibilidade completa, governança<br/>e eficiência para escalar com segurança.</h2>
+    </div>
+    <div class="cards-3">
+      <div class="dcard reveal">
+        <div class="dcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Onboarding Estratégico</h3>
+        <p>Integração conduzida por especialistas, com acompanhamento próximo desde o primeiro dia — alinhamento operacional, rapidez na entrada em produção e aderência total às necessidades do seu negócio.</p>
+      </div>
+      <div class="dcard reveal">
+        <div class="dcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Backoffice Dedicado</h3>
+        <p>Time exclusivo para suporte operacional, gestão de demandas e resolução ágil de ocorrências — fluidez nos processos, precisão nas informações e eficiência contínua.</p>
+      </div>
+      <div class="dcard reveal">
+        <div class="dcard-tag">24/7</div>
+        <div class="dcard-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3>Torre de Controle</h3>
+        <p>Monitoramento operacional contínuo, 24 horas por dia, com gestão ativa de eventos, decisões em tempo real e atuação preventiva para proteção do SLA. Estrutura dedicada, com equipe sênior e altamente especializada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== SERVIÇOS ================== -->
+<section class="servicos" id="servicos" data-screen-label="04 Portfólio">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Portfólio completo de serviços</div>
+      <h2 class="sec-title">Soluções modulares, tecnológicas<br/>e personalizáveis.</h2>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <div class="svc-img"><img src="assets/sorter-induction.jpeg" alt="Operação expresso" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-kicker">Expresso</div>
+          <h3>Expresso</h3>
+          <div class="svc-tag">Velocidade com rastreabilidade, segurança e garantia de embarque</div>
+          <ul>
+            <li>Integração aérea e rodoviária para máxima agilidade</li>
+            <li>Coletas flexíveis com rastreabilidade total</li>
+            <li>Paletização e despaletização (roll-on / roll-off)</li>
+            <li>Equipes dedicadas nos aeroportos de Guarulhos, Congonhas e Manaus</li>
+            <li>Embarques garantidos, 100% monitorados e segurados</li>
+            <li>Blindagem operacional para prazos críticos</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <div class="svc-img"><img src="assets/hub-floor-aerial.jpg" alt="Carga completa FTL" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-kicker">FTL</div>
+          <h3>Carga Completa</h3>
+          <div class="svc-tag">Previsibilidade, controle e escala ponto a ponto</div>
+          <ul>
+            <li>Veículo exclusivo para um único embarcador</li>
+            <li>Frota dedicada para rotas estratégicas e grandes volumes</li>
+            <li>Planejamento de rotas orientado a SLA, custo e eficiência</li>
+            <li>Monitoramento ponta a ponta em tempo real</li>
+            <li>Redução de manuseio e riscos operacionais</li>
+            <li>Ideal para transferências entre CDs, plantas e hubs</li>
+          </ul>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <div class="svc-img"><img src="assets/sorter-overview.jpeg" alt="Operações dedicadas" loading="lazy"/></div>
+        <div class="svc-body">
+          <div class="svc-kicker">Dedicadas</div>
+          <h3>Operações Dedicadas</h3>
+          <div class="svc-tag">Capacidade, flexibilidade e controle total da operação</div>
+          <ul>
+            <li>Frota exclusiva sob medida: Fiorinos, Tocos e demais perfis</li>
+            <li>Contratação por diária e km dedicado</li>
+            <li>Roteirização inteligente com remuneração por volume</li>
+            <li>Outsourcing completo com otimização contínua de custos</li>
+            <li>Cargas secas, refrigeradas e especiais (pharma e alimentos)</li>
+            <li>Equipe dedicada de monitoramento</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FROTA ================== -->
+<section class="frota" id="frota" data-screen-label="05 Frota">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Superioridade em frota</div>
+      <h2 class="sec-title">Escala, tecnologia e flexibilidade<br/>para operações de alta performance.</h2>
+    </div>
+    <div class="frota-grid">
+      <div class="frota-big reveal">
+        <div class="frota-card hl">
+          <div class="n" data-counter data-to="277">0</div>
+          <div class="l">veículos de <b style="color:var(--text)">frota própria</b></div>
+        </div>
+        <div class="frota-card">
+          <div class="n"><span class="plus">+</span><span data-counter data-to="1000">0</span></div>
+          <div class="l">veículos de <b style="color:var(--text)">frota agregada</b></div>
+        </div>
+        <div class="frota-benefits">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Alta disponibilidade para operações críticas</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Flexibilidade para escalar conforme a demanda</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Menor risco operacional e maior previsibilidade de prazos</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Capacidade de atender múltiplos perfis de carga e rotas</div>
+        </div>
+      </div>
+      <div class="fleet-table reveal">
+        <div class="ft-head"><h4>Composição da frota própria</h4><span>277 veículos</span></div>
+        <div class="fleet-rows">
+          <div class="fleet-row"><span>Carretas</span><b>185</b></div>
+          <div class="fleet-row"><span>Julieta</span><b>37</b></div>
+          <div class="fleet-row"><span>Toco</span><b>26</b></div>
+          <div class="fleet-row"><span>Truck</span><b>8</b></div>
+          <div class="fleet-row"><span>Cavalos Mecânicos</span><b>5</b></div>
+          <div class="fleet-row"><span>Utilitários</span><b>5</b></div>
+          <div class="fleet-row"><span>Carretas Sider</span><b>3</b></div>
+          <div class="fleet-row"><span>Dolly</span><b>3</b></div>
+          <div class="fleet-row"><span>Vans</span><b>3</b></div>
+          <div class="fleet-row"><span>3/4</span><b>2</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== POR QUE A CARRIERS ================== -->
+<section class="porque" id="porque" data-screen-label="06 Por que">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-label">Por que escolher a Carriers</div>
+      <h2 class="sec-title">Experiência integrada, inteligência operacional<br/>e controle em tempo real.</h2>
+    </div>
+    <div class="pq-grid">
+      <div class="pq reveal">
+        <div class="pq-num">01</div>
+        <h3>Frota própria e controle total</h3>
+        <ul>
+          <li>Motoristas contratados em regime CLT</li>
+          <li>Veículos novos e padronizados (até 5 anos de uso)</li>
+          <li>Mais segurança, previsibilidade e confiabilidade operacional</li>
+        </ul>
+      </div>
+      <div class="pq reveal">
+        <div class="pq-num">02</div>
+        <h3>Vertical exclusiva por segmento</h3>
+        <ul>
+          <li>Estrutura dedicada para cada tipo de operação</li>
+          <li>Tracking em tempo real de ponta a ponta</li>
+          <li>Equipe especializada, focada no seu negócio</li>
+        </ul>
+      </div>
+      <div class="pq reveal">
+        <div class="pq-num">03</div>
+        <h3>Expertise comprovada</h3>
+        <ul>
+          <li>Mais de 1.500 viagens realizadas por mês</li>
+          <li>Know-how operacional consolidado</li>
+          <li>Times em treinamento contínuo e alta performance</li>
+        </ul>
+      </div>
+      <div class="pq reveal">
+        <div class="pq-num">04</div>
+        <h3>Tecnologia proprietária</h3>
+        <ul>
+          <li>Torre de controle online (24/7)</li>
+          <li>BI Analytics e dashboards inteligentes</li>
+          <li>Roteirização otimizada para ganho de prazo e custo</li>
+          <li>Softwares e equipamentos próprios para rastreabilidade em tempo real</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== RASTREIO ================== -->
+<section class="rastreio" id="rastreio" data-screen-label="07 Rastreamento">
+  <div class="wrap-narrow">
+    <div class="reveal">
+      <div class="sec-label">Rastreamento</div>
+      <h2 class="sec-title">Acompanhe sua entrega<br/>em tempo real.</h2>
+      <p class="sec-sub">Digite o código do objeto para consultar o status e o histórico completo de movimentações.</p>
+    </div>
+    <div class="track-box reveal">
+      <div class="track-form">
+        <input class="track-input" id="track-input" type="text" placeholder="Ex: BW394015795BR" maxlength="20" autocomplete="off" spellcheck="false" aria-label="Código de rastreamento"/>
+        <button class="track-btn" id="track-btn">Rastrear</button>
+      </div>
+      <div class="track-hint">Códigos de demonstração:
+        <code data-fill="BW394015795BR">BW394015795BR</code>
+        <code data-fill="FL025223750SH">FL025223750SH</code>
+        <code data-fill="YB149414615BR">YB149414615BR</code>
+      </div>
+
+      <div class="track-loading" id="track-loading"><div class="spinner"></div><span>Consultando objeto…</span></div>
+
+      <div class="track-result" id="track-result">
+        <div class="tr-head">
+          <div>
+            <div class="tr-code" id="tr-code"></div>
+            <div class="tr-meta" id="tr-meta"></div>
+          </div>
+          <div class="tr-status" id="tr-status"></div>
+        </div>
+        <div class="stages" id="tr-stages"></div>
+        <div id="tr-baixa-slot"></div>
+        <div class="tr-history">
+          <h4>Histórico de movimentações</h4>
+          <div id="tr-events"></div>
+        </div>
+      </div>
+
+      <div class="track-notfound" id="track-notfound">Objeto não localizado. Confira o código digitado ou tente novamente em alguns minutos.</div>
+      <div class="track-disclaimer">Consulta integrada ao sistema operacional Carriers. Dados atualizados em tempo real conforme eventos registrados na operação.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== CONTATO ================== -->
+<section class="contato" id="contato" data-screen-label="08 Contato">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Pronto para escalar sua logística<br/>com segurança?</h2>
+      <p>Fale com um especialista e receba uma proposta sob medida para a sua operação — Expresso, FTL ou Dedicada.</p>
+      <div class="hero-ctas">
+        <a href="mailto:comercial@carriers.com.br" class="btn btn-primary">Falar com um especialista</a>
+        <a href="#rastreio" class="btn btn-ghost">Rastrear uma entrega</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================== FOOTER ================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo" aria-label="Carriers">
+          <span class="logo-mark">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M2 8h9M8 4l4 4-4 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span>CARRIERS</span>
+        </a>
+        <p>Transportadora nacional especializada em operações B2B. Eficiência, previsibilidade e inteligência logística há mais de 15 anos.</p>
+      </div>
+      <div>
+        <h5>Serviços</h5>
+        <div class="footer-col">
+          <a href="#servicos">Expresso</a>
+          <a href="#servicos">FTL — Carga Completa</a>
+          <a href="#servicos">Operações Dedicadas</a>
+        </div>
+      </div>
+      <div>
+        <h5>Empresa</h5>
+        <div class="footer-col">
+          <a href="#porque">Por que a Carriers</a>
+          <a href="#frota">Nossa frota</a>
+          <a href="#diferenciais">Diferenciais</a>
+        </div>
+      </div>
+      <div>
+        <h5>Atendimento</h5>
+        <div class="footer-col">
+          <a href="#rastreio">Rastrear entrega</a>
+          <a href="#contato">Solicitar proposta</a>
+          <a href="mailto:comercial@carriers.com.br">comercial@carriers.com.br</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Carriers Transportes. Todos os direitos reservados.</span>
+      <span class="mono">Feito para escalar com segurança.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ===== Reveal on scroll ===== */
+(function(){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+})();
+
+/* ===== Animated counters ===== */
+(function(){
+  const els = document.querySelectorAll('[data-to]');
+  if(!els.length) return;
+  const fmt = n => n.toLocaleString('pt-BR');
+  const animate = el => {
+    const to = parseInt(el.dataset.to,10);
+    const dur = 1600, t0 = performance.now();
+    const tick = now => {
+      const p = Math.min((now-t0)/dur,1);
+      const eased = 1-Math.pow(1-p,3);
+      el.textContent = fmt(Math.round(to*eased));
+      if(p<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const cIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ animate(e.target); cIo.unobserve(e.target); }
+    });
+  },{threshold:0.4});
+  els.forEach(el=>cIo.observe(el));
+})();
+
+/* ===== Tracking =====
+   FASE 3: substituir DEMO_DB por fetch('/api/track') — proxy serverless
+   que autentica na API Flash Pegasus (Token V1 + Consulta v2).
+   Os payloads abaixo são respostas REAIS do ambiente de homologação,
+   no formato exato retornado pela API. */
+(function(){
+  const STAGES = ['Processado','Coletado','Em transferência','Hub destino','Em rota','Entregue'];
+
+  /* Mapeamento eventoId -> estágio da timeline (validado com dados reais) */
+  const EVENT_STAGE = {
+    '1000':0,'1100':0,          // cadastrado / aguardando postagem
+    '1400':1,                    // postado
+    '2000':2,'2200':2,'2610':2,  // transferência / redespacho / aguardando retirada
+    '3000':3,                    // recebido no hub
+    '4100':4,'4200':4,           // em rota / tentativa não efetuada
+    '4300':5,'5000':5            // entrega registrada / comprovante
+  };
+  const ALERT_EVENTS = {'4200':'warn','7100':'warn','2610':'warn','6400':'err'};
+
+  /* Respostas reais da Consulta v2 (homolog) — estrutura idêntica à API */
+  const DEMO_DB = {
+    'BW394015795BR':{codigoCartao:'BW394015795BR',contrato:'8724',dtPost:'02/06/2026 17:15',
+      baixa:[{grauParentesco:'caixa de correspondencia',recebedor:'Caixa C.',dtBaixa:'18/06/2026 16:24',tentativas:'1'}],
+      historico:[
+        {ocorrencia:'02/06/2026 17:16',eventoId:'1100',evento:'Em arquivo — aguardando postagem',local:'São Bernardo do Campo'},
+        {ocorrencia:'02/06/2026 17:15',eventoId:'1400',evento:'Postado — logística iniciada',local:'São Bernardo do Campo'},
+        {ocorrencia:'02/06/2026 17:16',eventoId:'2200',evento:'Redespachado por terceiro',local:'São Bernardo do Campo'},
+        {ocorrencia:'18/06/2026 16:23',eventoId:'4100',evento:'Entrega em andamento (na rua)',local:'São Bernardo do Campo'},
+        {ocorrencia:'18/06/2026 16:24',eventoId:'4300',evento:'Entrega registrada',local:'São Bernardo do Campo'},
+        {ocorrencia:'18/06/2026 16:24',eventoId:'5000',evento:'Comprovante registrado',local:'São Bernardo do Campo'}]},
+    'FL025223750SH':{codigoCartao:'FL025223750SH',contrato:'16553',dtPost:'28/05/2026 15:48',baixa:[],
+      historico:[
+        {ocorrencia:'28/05/2026 13:41',eventoId:'1100',evento:'Em arquivo — aguardando postagem',local:'São Bernardo do Campo'},
+        {ocorrencia:'28/05/2026 15:48',eventoId:'1400',evento:'Postado — logística iniciada',local:'São Paulo'},
+        {ocorrencia:'12/06/2026 09:54',eventoId:'4100',evento:'Entrega em andamento (na rua)',local:'São Paulo'}]},
+    'YB149414615BR':{codigoCartao:'YB149414615BR',contrato:'6476',dtPost:'09/06/2026 13:36',baixa:[],
+      historico:[
+        {ocorrencia:'09/06/2026 13:36',eventoId:'1100',evento:'Em arquivo — aguardando postagem',local:'São Bernardo do Campo'},
+        {ocorrencia:'22/06/2026 10:01',eventoId:'4100',evento:'Entrega em andamento (na rua)',local:'São Bernardo do Campo'},
+        {ocorrencia:'22/06/2026 10:02',eventoId:'4200',evento:'Entrega não efetuada',local:'São Bernardo do Campo',situacao:'Destinatário ausente'},
+        {ocorrencia:'22/06/2026 10:03',eventoId:'7100',evento:'Aguardando telemarketing',local:'São Bernardo do Campo'}]}
+  };
+
+  const $ = id => document.getElementById(id);
+  const inp=$('track-input'), btn=$('track-btn'),
+        loading=$('track-loading'), result=$('track-result'), notfound=$('track-notfound');
+
+  /* Parse "DD/MM/AAAA HH:MM" -> Date (para ordenar; a API NÃO retorna ordenado) */
+  const parseDt = s => {
+    const m = s.match(/(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})/);
+    return m ? new Date(+m[3],+m[2]-1,+m[1],+m[4],+m[5]) : new Date(0);
+  };
+
+  function render(rec){
+    const hist = [...rec.historico].sort((a,b)=>parseDt(a.ocorrencia)-parseDt(b.ocorrencia));
+    const delivered = (rec.baixa && rec.baixa.length>0);
+    const last = hist[hist.length-1];
+
+    /* estágio atual = maior estágio atingido no histórico */
+    let stage = 0;
+    hist.forEach(ev=>{ const s=EVENT_STAGE[ev.eventoId]; if(s!==undefined&&s>stage) stage=s; });
+    if(delivered) stage = 5;
+
+    $('tr-code').textContent = rec.codigoCartao;
+    $('tr-meta').textContent = `Contrato ${rec.contrato} · Postado em ${rec.dtPost}`;
+
+    const st = $('tr-status');
+    st.className = 'tr-status';
+    const alertType = ALERT_EVENTS[last.eventoId];
+    if(delivered){ st.classList.add('ok'); st.textContent='Entregue'; }
+    else if(alertType){ st.classList.add(alertType); st.textContent=last.evento; }
+    else { st.textContent = STAGES[stage]; }
+
+    /* timeline */
+    $('tr-stages').innerHTML = STAGES.map((name,i)=>`
+      <div class="stage ${i<stage?'done':''} ${i===stage?'done current':''}">
+        <div class="stage-bar"></div><div class="stage-dot"></div>
+        <div class="stage-name">${name}</div>
+      </div>`).join('');
+
+    /* comprovante de entrega (dados já mascarados no proxy — LGPD) */
+    $('tr-baixa-slot').innerHTML = delivered ? `
+      <div class="tr-baixa">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        <div>
+          <div class="b-title">Entrega confirmada</div>
+          <div class="b-info">Recebido por ${rec.baixa[0].recebedor} (${rec.baixa[0].grauParentesco}) em ${rec.baixa[0].dtBaixa} · ${rec.baixa[0].tentativas} tentativa(s)</div>
+        </div>
+      </div>` : '';
+
+    /* histórico (mais recente primeiro) */
+    $('tr-events').innerHTML = [...hist].reverse().map(ev=>`
+      <div class="ev">
+        <div class="ev-date">${ev.ocorrencia}</div>
+        <div class="ev-body">
+          <div class="ev-title">${ev.evento}</div>
+          <div class="ev-loc">${ev.local}</div>
+          ${ev.situacao?`<span class="ev-sit">${ev.situacao}</span>`:''}
+        </div>
+      </div>`).join('');
+
+    result.classList.add('show');
+  }
+
+  function go(){
+    const code = inp.value.trim().toUpperCase();
+    if(!code) return;
+    result.classList.remove('show');
+    notfound.classList.remove('show');
+    loading.classList.add('show');
+    /* FASE 3: trocar por fetch('/api/track', {method:'POST', body:{code}}) */
+    setTimeout(()=>{
+      loading.classList.remove('show');
+      const rec = DEMO_DB[code];
+      if(rec) render(rec);
+      else notfound.classList.add('show');
+    }, 700);
+  }
+
+  btn.addEventListener('click', go);
+  inp.addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
+  document.querySelectorAll('[data-fill]').forEach(c=>{
+    c.addEventListener('click', ()=>{ inp.value=c.dataset.fill; go(); });
+  });
+})();
+</script>
+</body>
+</html>
