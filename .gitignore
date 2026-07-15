@@ -1,0 +1,9 @@
+# Documentação interna — contém credenciais da API Flash e dados comerciais.
+# NÃO remover do gitignore: o repositório pode ser público (GitHub Pages).
+DOCS/
+
+# Configuração local do Claude Code
+.claude/
+
+# Sistema
+.DS_Store

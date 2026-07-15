@@ -1,0 +1,2571 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flash · Relações com Investidores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --navy: #1b2470;
+        --navy-deep: #0f1547;
+        --orange: #f37021;
+        --orange-dark: #d85a11;
+        --orange-light: #ffab6b;
+        --bg: #fbfbfd;
+        --bg-soft: #f5f5f7;
+        --ink: #1d1d1f;
+        --ink-soft: #3a3a3d;
+        --muted: #6e6e73;
+        --muted-2: #86868b;
+        --line: #e5e5ea;
+        --line-soft: #efeff2;
+        --green: #16a34a;
+        --red: #dc2626;
+        --max: 1240px;
+        --max-narrow: 880px;
+        --pad-x: 24px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: -0.005em;
+        overflow-x: hidden;
+      }
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: 0;
+        background: none;
+        color: inherit;
+      }
+      .mono {
+        font-family:
+          "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-feature-settings: "tnum" 1;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+      }
+      .wrap-narrow {
+        max-width: var(--max-narrow);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+      }
+
+      /* ============ TOP NAV ============ */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(251, 251, 253, 0.86);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+      .topbar-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 52px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 15px;
+        letter-spacing: -0.02em;
+      }
+      .brand-mark {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background: var(--navy-deep);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--orange-light);
+        letter-spacing: 0.04em;
+      }
+      .brand-sub {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        font-weight: 400;
+        border-left: 1px solid var(--line);
+        padding-left: 10px;
+        margin-left: 2px;
+      }
+      .topnav {
+        display: flex;
+        gap: 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .topnav a {
+        padding: 0 14px;
+        font-weight: 400;
+        transition: color 0.2s;
+      }
+      .topnav a:hover {
+        color: var(--ink);
+      }
+      .topnav a.back-link {
+        color: var(--orange);
+        font-weight: 500;
+        padding-right: 18px;
+        margin-right: 8px;
+        border-right: 1px solid var(--line);
+      }
+      .topnav a.back-link:hover {
+        color: var(--orange-dark);
+      }
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .lang-toggle {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 980px;
+        overflow: hidden;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+      }
+      .lang-toggle button {
+        padding: 5px 10px;
+        color: var(--muted-2);
+        transition: all 0.2s;
+      }
+      .lang-toggle button.on {
+        background: var(--ink);
+        color: #fff;
+      }
+      .ticker-mini {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .ticker-mini .sym {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .ticker-mini .val {
+        color: var(--ink);
+      }
+      .ticker-mini .chg.down {
+        color: var(--red);
+      }
+      .ticker-mini .chg.up {
+        color: var(--green);
+      }
+      @media (max-width: 880px) {
+        .topnav {
+          display: none;
+        }
+        .brand-sub {
+          display: none;
+        }
+        .ticker-mini {
+          display: none;
+        }
+      }
+
+      /* ============ SUB NAV (RI sections) ============ */
+      .subnav {
+        border-bottom: 1px solid var(--line-soft);
+        background: #fff;
+        position: sticky;
+        top: 52px;
+        z-index: 90;
+      }
+      .subnav-row {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        height: 46px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .subnav-row::-webkit-scrollbar {
+        display: none;
+      }
+      .subnav-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--orange);
+        padding-right: 22px;
+        margin-right: 18px;
+        border-right: 1px solid var(--line);
+        flex-shrink: 0;
+      }
+      .subnav-row a {
+        font-size: 12px;
+        color: var(--ink-soft);
+        padding: 0 14px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: color 0.2s;
+      }
+      .subnav-row a:hover {
+        color: var(--orange);
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        padding: 140px 0 120px;
+        text-align: center;
+      }
+      .hero .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 30px;
+      }
+      .hero .eyebrow::before,
+      .hero .eyebrow::after {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--orange);
+        opacity: 0.5;
+      }
+      .hero h1 {
+        font-size: clamp(48px, 7.2vw, 108px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 0.98;
+        color: var(--ink);
+        max-width: 1100px;
+        margin: 0 auto 30px;
+        text-wrap: balance;
+      }
+      .hero h1 .alt {
+        color: var(--orange);
+        font-style: normal;
+      }
+      .hero h1 em {
+        font-style: normal;
+        background: linear-gradient(
+          180deg,
+          var(--ink) 50%,
+          var(--muted-2) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+      .hero .lede {
+        font-size: clamp(18px, 1.6vw, 22px);
+        font-weight: 300;
+        color: var(--muted);
+        max-width: 680px;
+        margin: 0 auto 44px;
+        line-height: 1.45;
+        text-wrap: pretty;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        border-radius: 980px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+      }
+      .btn .arr {
+        transition: transform 0.2s;
+      }
+      .btn:hover .arr {
+        transform: translateX(3px);
+      }
+      .btn-dark {
+        background: var(--ink);
+        color: #fff;
+      }
+      .btn-dark:hover {
+        background: #000;
+      }
+      .btn-ghost {
+        border: 1px solid var(--line);
+        color: var(--ink-soft);
+      }
+      .btn-ghost:hover {
+        border-color: var(--ink);
+        color: var(--ink);
+      }
+      .btn-orange {
+        background: var(--orange);
+        color: #fff;
+      }
+      .btn-orange:hover {
+        background: var(--orange-dark);
+      }
+      .btn-link {
+        color: var(--ink);
+        font-weight: 500;
+        font-size: 13px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-link:hover {
+        color: var(--orange);
+      }
+
+      /* ============ STOCK SECTION (dark) ============ */
+      .stock-section {
+        background: var(--navy-deep);
+        color: #fff;
+        padding: 120px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .stock-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            900px 500px at 80% 20%,
+            rgba(243, 112, 33, 0.12),
+            transparent 60%
+          ),
+          radial-gradient(
+            700px 400px at 10% 90%,
+            rgba(255, 255, 255, 0.04),
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+      .stock-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 80px;
+        align-items: start;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+      }
+      .stock-left .eyebrow {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--orange-light);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .stock-left .eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--orange-light);
+      }
+      .stock-left h2 {
+        font-size: clamp(36px, 4.4vw, 56px);
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        line-height: 1.04;
+        color: #fff;
+        margin-bottom: 24px;
+        text-wrap: balance;
+        max-width: 540px;
+      }
+      .stock-left p {
+        font-size: 16px;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 480px;
+        margin-bottom: 32px;
+        font-weight: 300;
+      }
+      .stock-meta {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 32px;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 520px;
+      }
+      .stock-meta dt {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 6px;
+        font-weight: 500;
+      }
+      .stock-meta dd {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      .stock-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 22px;
+        padding: 30px 30px 28px;
+        backdrop-filter: blur(20px);
+      }
+      .stock-card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+      }
+      .stock-card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .stock-card-symbol {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .stock-card-name {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.5);
+        letter-spacing: 0.02em;
+      }
+      .stock-card-status {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+      .pulse {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+        animation: pulse 2s infinite;
+      }
+      .pulse.flat {
+        background: #fbbf24;
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.5);
+        animation: pulse 2.6s infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+        }
+      }
+
+      .stock-price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 6px;
+        flex-wrap: wrap;
+      }
+      .stock-price {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 64px;
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        color: #fff;
+      }
+      .stock-price-cur {
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 500;
+        margin-right: 2px;
+      }
+      .stock-change {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 11px;
+        border-radius: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .stock-change.up {
+        background: rgba(74, 222, 128, 0.15);
+        color: #4ade80;
+      }
+      .stock-change.down {
+        background: rgba(248, 113, 113, 0.15);
+        color: #f87171;
+      }
+      .stock-change.flat {
+        background: rgba(251, 191, 36, 0.12);
+        color: #fbbf24;
+      }
+      .stock-time {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.02em;
+        margin-bottom: 24px;
+      }
+
+      .stock-chart {
+        height: 130px;
+        margin: 0 -6px 24px;
+        position: relative;
+      }
+      .stock-chart svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .stock-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        padding-top: 22px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .stock-stat-label {
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 6px;
+        font-weight: 500;
+      }
+      .stock-stat-val {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: -0.005em;
+      }
+
+      .stock-disclaim {
+        margin-top: 22px;
+        font-size: 10px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0;
+        font-weight: 300;
+        max-width: 380px;
+      }
+
+      @media (max-width: 980px) {
+        .stock-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .stock-stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px 22px;
+        }
+      }
+
+      /* ============ SECTION SHELL ============ */
+      section.sec {
+        padding: 140px 0;
+        background: var(--bg);
+      }
+      section.sec.alt {
+        background: #fff;
+      }
+      section.sec.gray {
+        background: var(--bg-soft);
+      }
+      .sec-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 40px;
+        margin-bottom: 64px;
+        flex-wrap: wrap;
+      }
+      .sec-head-left {
+        max-width: 640px;
+      }
+      .eyebrow-sec {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .eyebrow-sec::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--orange);
+      }
+      .sec.dark .eyebrow-sec {
+        color: var(--orange-light);
+      }
+      .sec.dark .eyebrow-sec::before {
+        background: var(--orange-light);
+      }
+      .sec-title {
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        line-height: 1.04;
+        color: var(--ink);
+        margin: 0;
+        text-wrap: balance;
+      }
+      .sec.dark .sec-title {
+        color: #fff;
+      }
+      .sec-sub {
+        margin-top: 18px;
+        font-size: 17px;
+        line-height: 1.55;
+        color: var(--muted);
+        max-width: 560px;
+        font-weight: 300;
+      }
+      .sec.dark .sec-sub {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      section.sec.dark {
+        background: var(--navy-deep);
+        color: #fff;
+      }
+
+      /* ============ KIT INVESTIDOR ============ */
+      .kit-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .kit-card {
+        background: #fff;
+        border: 1px solid var(--line-soft);
+        border-radius: 20px;
+        padding: 38px 34px;
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+        transition: all 0.25s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .kit-card:hover {
+        border-color: var(--ink);
+        transform: translateY(-3px);
+        box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.18);
+      }
+      .kit-card .kit-period {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--orange);
+        letter-spacing: 0.1em;
+        margin-bottom: auto;
+      }
+      .kit-card h3 {
+        font-size: 26px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--ink);
+        margin: 60px 0 8px;
+      }
+      .kit-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin-bottom: 24px;
+        font-weight: 400;
+      }
+      .kit-card .kit-arrow {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.25s;
+      }
+      .kit-card:hover .kit-arrow {
+        transform: translateX(4px) rotate(-20deg);
+        background: var(--orange);
+      }
+      .kit-card.feat {
+        background: var(--ink);
+        color: #fff;
+        border-color: var(--ink);
+      }
+      .kit-card.feat h3 {
+        color: #fff;
+      }
+      .kit-card.feat p {
+        color: rgba(255, 255, 255, 0.62);
+      }
+      .kit-card.feat .kit-period {
+        color: var(--orange-light);
+      }
+      .kit-card.feat .kit-arrow {
+        background: #fff;
+        color: var(--ink);
+      }
+      .kit-card.feat:hover {
+        transform: translateY(-3px);
+      }
+      .kit-card.feat:hover .kit-arrow {
+        background: var(--orange);
+        color: #fff;
+      }
+      @media (max-width: 900px) {
+        .kit-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ DESTAQUES (giant numbers) ============ */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .stat {
+        grid-column: span 4;
+        padding: 48px 40px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .stat:nth-child(3n) {
+        border-right: 0;
+      }
+      .stat .stat-num {
+        font-size: clamp(48px, 5.2vw, 80px);
+        font-weight: 600;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        color: var(--ink);
+        margin-bottom: 14px;
+        font-feature-settings: "tnum" 1;
+      }
+      .stat .stat-num .unit {
+        font-size: 0.45em;
+        color: var(--muted-2);
+        font-weight: 500;
+        margin-left: 4px;
+        letter-spacing: -0.02em;
+        vertical-align: 0.4em;
+      }
+      .stat .stat-num .pre {
+        font-size: 0.5em;
+        color: var(--muted-2);
+        font-weight: 500;
+        margin-right: 6px;
+        vertical-align: 0.5em;
+      }
+      .stat .stat-lbl {
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.4;
+        font-weight: 400;
+        max-width: 240px;
+      }
+      .stat .stat-eb {
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 24px;
+        font-weight: 600;
+      }
+      @media (max-width: 880px) {
+        .stat {
+          grid-column: span 6;
+          padding: 36px 24px;
+        }
+        .stat:nth-child(3n) {
+          border-right: 1px solid var(--line);
+        }
+        .stat:nth-child(2n) {
+          border-right: 0;
+        }
+      }
+      @media (max-width: 560px) {
+        .stat {
+          grid-column: span 12;
+          border-right: 0 !important;
+        }
+      }
+
+      /* ============ ÚLTIMAS ATUALIZAÇÕES ============ */
+      .news-list {
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--line);
+      }
+      .news-row {
+        display: grid;
+        grid-template-columns: 120px 110px 1fr 28px;
+        gap: 32px;
+        align-items: center;
+        padding: 26px 8px;
+        border-bottom: 1px solid var(--line);
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .news-row:hover {
+        background: var(--bg-soft);
+      }
+      .news-row .news-date {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+      .news-row .news-tag {
+        display: inline-block;
+        padding: 4px 9px;
+        border-radius: 980px;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        background: var(--bg-soft);
+        color: var(--ink-soft);
+        width: fit-content;
+      }
+      .news-row .news-tag.fato {
+        background: rgba(243, 112, 33, 0.1);
+        color: var(--orange-dark);
+      }
+      .news-row .news-tag.com {
+        background: rgba(27, 36, 112, 0.08);
+        color: var(--navy);
+      }
+      .news-row .news-tag.res {
+        background: rgba(22, 163, 74, 0.1);
+        color: var(--green);
+      }
+      .news-row .news-title {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        line-height: 1.35;
+      }
+      .news-row .news-go {
+        color: var(--muted-2);
+        transition:
+          transform 0.2s,
+          color 0.2s;
+      }
+      .news-row:hover .news-go {
+        color: var(--orange);
+        transform: translateX(3px);
+      }
+      @media (max-width: 760px) {
+        .news-row {
+          grid-template-columns: auto 1fr;
+          gap: 14px;
+          padding: 22px 4px;
+        }
+        .news-row .news-date {
+          grid-column: 1;
+          font-size: 11px;
+        }
+        .news-row .news-tag {
+          grid-column: 2;
+          justify-self: start;
+          font-size: 9px;
+        }
+        .news-row .news-title {
+          grid-column: 1/-1;
+          font-size: 15px;
+        }
+        .news-row .news-go {
+          display: none;
+        }
+      }
+      .news-foot {
+        padding-top: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      /* ============ PRÓXIMOS EVENTOS ============ */
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .event {
+        background: #fff;
+        border: 1px solid var(--line-soft);
+        border-radius: 20px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .event-date {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .event-day {
+        font-size: 54px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        color: var(--ink);
+        line-height: 1;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .event-mo {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--orange);
+      }
+      .event-mo span {
+        display: block;
+        color: var(--muted);
+        font-weight: 400;
+        font-size: 10px;
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+        text-transform: none;
+      }
+      .event h4 {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        line-height: 1.3;
+      }
+      .event p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.5;
+        margin: 0;
+        font-weight: 400;
+      }
+      .event-foot {
+        margin-top: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--muted-2);
+      }
+      .event-foot .event-time {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--ink-soft);
+      }
+      @media (max-width: 880px) {
+        .events-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ GOVERNANÇA ============ */
+      .gov-intro {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 60px;
+        margin-bottom: 64px;
+        align-items: start;
+      }
+      .gov-intro-side {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .gov-intro-side strong {
+        color: var(--ink);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 8px;
+        letter-spacing: -0.01em;
+      }
+      @media (max-width: 880px) {
+        .gov-intro {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+
+      .board-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .board-member {
+        padding: 36px 30px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .board-member:nth-child(4n) {
+        border-right: 0;
+      }
+      .board-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--navy), var(--navy-deep));
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+      }
+      .board-name {
+        font-size: 17px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+      }
+      .board-role {
+        font-size: 11px;
+        color: var(--orange);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+      }
+      .board-bio {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.55;
+        font-weight: 400;
+      }
+      .board-term {
+        font-size: 10px;
+        color: var(--muted-2);
+        letter-spacing: 0.02em;
+      }
+      .board-term span {
+        color: var(--orange);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-right: 6px;
+        font-size: 9px;
+      }
+      .gov-sub {
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--orange);
+        font-weight: 600;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 1080px) {
+        .board-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .board-member:nth-child(4n) {
+          border-right: 1px solid var(--line);
+        }
+        .board-member:nth-child(2n) {
+          border-right: 0;
+        }
+      }
+      @media (max-width: 600px) {
+        .board-grid {
+          grid-template-columns: 1fr;
+        }
+        .board-member {
+          border-right: 0 !important;
+        }
+      }
+
+      /* ============ DOCUMENTOS CVM ============ */
+      .docs-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        border-top: 1px solid var(--line);
+      }
+      .doc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 36px 32px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .doc:nth-child(3n) {
+        border-right: 0;
+      }
+      .doc:hover {
+        background: var(--bg-soft);
+      }
+      .doc-name {
+        font-size: 17px;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.015em;
+        line-height: 1.25;
+      }
+      .doc-meta {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .doc-meta .dot {
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: var(--muted-2);
+      }
+      .doc-go {
+        font-size: 11px;
+        color: var(--ink-soft);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-top: 14px;
+      }
+      .doc-go .arr {
+        transition: transform 0.2s;
+      }
+      .doc:hover .doc-go {
+        color: var(--orange);
+      }
+      .doc:hover .doc-go .arr {
+        transform: translateX(3px);
+      }
+      @media (max-width: 880px) {
+        .docs-grid {
+          grid-template-columns: 1fr;
+        }
+        .doc {
+          border-right: 0 !important;
+        }
+      }
+
+      /* ============ CONTATO RI ============ */
+      .contact-section {
+        background: var(--ink);
+        color: #fff;
+        padding: 140px 0 120px;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 80px;
+        align-items: end;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+      }
+      .contact-section h2 {
+        font-size: clamp(40px, 5vw, 72px);
+        font-weight: 600;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        color: #fff;
+        margin-bottom: 24px;
+        text-wrap: balance;
+      }
+      .contact-section h2 .alt {
+        color: var(--orange-light);
+      }
+      .contact-section .lede {
+        font-size: 17px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 480px;
+        margin-bottom: 32px;
+        font-weight: 300;
+      }
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: 32px;
+      }
+      .contact-info .row {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .contact-info .lbl {
+        font-size: 10px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 600;
+      }
+      .contact-info .val {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 400;
+        letter-spacing: -0.005em;
+      }
+      .contact-info .val a:hover {
+        color: var(--orange-light);
+      }
+      .contact-info .val.mono {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+      }
+      @media (max-width: 880px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 50px;
+        }
+        .contact-info {
+          border-left: 0;
+          padding-left: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          padding-top: 32px;
+        }
+      }
+
+      /* ============ FOOTER ============ */
+      footer.foot {
+        background: var(--navy-deep);
+        color: #fff;
+        padding: 64px 0 32px;
+      }
+      .foot-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 var(--pad-x);
+        margin-bottom: 48px;
+      }
+      .foot-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .foot-brand .mark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+      .foot-brand .mark .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        font-size: 11px;
+      }
+      .foot-brand p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.6;
+        max-width: 280px;
+        font-weight: 300;
+      }
+      .foot-col h5 {
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.5);
+        margin-bottom: 18px;
+        font-weight: 600;
+      }
+      .foot-col ul {
+        list-style: none;
+      }
+      .foot-col li {
+        margin-bottom: 10px;
+      }
+      .foot-col a {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.78);
+        transition: color 0.2s;
+      }
+      .foot-col a:hover {
+        color: var(--orange-light);
+      }
+      .foot-bot {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 24px var(--pad-x) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        letter-spacing: 0.02em;
+      }
+      .foot-bot .links {
+        display: flex;
+        gap: 18px;
+      }
+      .foot-bot a:hover {
+        color: var(--orange-light);
+      }
+      @media (max-width: 880px) {
+        .foot-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+      @media (max-width: 560px) {
+        .foot-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ REVEAL ============ */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1),
+          transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ============ DARK MODE TOGGLE (contrast) ============ */
+      body.hi-contrast {
+        --bg: #fff;
+        --bg-soft: #f0f0f3;
+        --line: #999;
+        --line-soft: #bbb;
+        --muted: #444;
+        --muted-2: #666;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================ TOP NAV ================ -->
+    <header class="topbar">
+      <div class="topbar-row">
+        <a class="brand" href="index.html" aria-label="Sequoia">
+          <span class="brand-mark">S</span>
+          <span data-i18n="brand">Sequoia</span>
+          <span class="brand-sub" data-i18n="brand_sub"
+            >Relações com Investidores</span
+          >
+        </a>
+        <nav class="topnav" aria-label="principal">
+          <a href="index.html" class="back-link" data-i18n="nav_site"
+            >← Site institucional</a
+          >
+          <a href="#top" data-i18n="nav_about">Sobre</a>
+          <a href="#governanca" data-i18n="nav_gov">Governança</a>
+          <a href="#kit" data-i18n="nav_fin">Financeiras</a>
+          <a href="#documentos" data-i18n="nav_docs">Documentos CVM</a>
+          <a href="#contato" data-i18n="nav_serv">Serviços</a>
+        </nav>
+        <div class="topbar-right">
+          <span class="ticker-mini" id="topTicker">
+            <span class="sym">SEQL3</span>
+            <span class="val">R$&nbsp;0,12</span>
+            <span class="chg flat">0,00%</span>
+          </span>
+          <div class="lang-toggle" role="group" aria-label="language">
+            <button class="on" data-lang="pt">PT</button>
+            <button data-lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUB NAV -->
+      <nav class="subnav" aria-label="seções RI">
+        <div class="subnav-row">
+          <span class="subnav-label" data-i18n="subnav_label"
+            >Investidores</span
+          >
+          <a href="#cotacao" data-i18n="sn_quote">Cotações</a>
+          <a href="#kit" data-i18n="sn_kit">Kit do Investidor</a>
+          <a href="#updates" data-i18n="sn_news">Comunicados</a>
+          <a href="#eventos" data-i18n="sn_events">Eventos</a>
+          <a href="#governanca" data-i18n="sn_gov">Governança</a>
+          <a href="#documentos" data-i18n="sn_docs">Documentos CVM</a>
+          <a href="#contato" data-i18n="sn_contact">Fale com o RI</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ================ HERO ================ -->
+    <section class="hero" id="top">
+      <div class="wrap-narrow">
+        <div class="eyebrow reveal" data-i18n="hero_eb">
+          Relações com Investidores
+        </div>
+        <h1 class="reveal">
+          <span data-i18n="hero_t1">Transformação</span><br />
+          <em data-i18n="hero_t2">em curso.</em>
+        </h1>
+        <p class="lede reveal" data-i18n="hero_sub">
+          A Sequoia atravessa um ciclo de reestruturação centrado em logística
+          B2B, eficiência operacional e disciplina financeira. Acompanhe aqui os
+          resultados, comunicados e a governança da companhia.
+        </p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-dark" href="#kit">
+            <span data-i18n="hero_cta1">Kit do investidor 3T25</span>
+            <span class="arr">→</span>
+          </a>
+          <a class="btn btn-ghost" href="#updates">
+            <span data-i18n="hero_cta2">Últimos comunicados</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ STOCK / COTAÇÃO ================ -->
+    <section class="stock-section" id="cotacao">
+      <div class="stock-grid">
+        <div class="stock-left reveal">
+          <div class="eyebrow" data-i18n="stock_eb">
+            Cotação · B3 Novo Mercado
+          </div>
+          <h2 data-i18n="stock_title">
+            SEQL3 — leitura honesta de um momento de virada.
+          </h2>
+          <p data-i18n="stock_sub">
+            O ticker reflete o processo de reestruturação societária e
+            operacional em andamento. A companhia mantém foco em B2B, governança
+            no Novo Mercado e divulgação tempestiva ao mercado.
+          </p>
+          <dl class="stock-meta">
+            <div>
+              <dt data-i18n="meta_segment">Segmento de listagem</dt>
+              <dd>Novo Mercado</dd>
+            </div>
+            <div>
+              <dt data-i18n="meta_isin">Código ISIN</dt>
+              <dd>BRSEQLACNOR2</dd>
+            </div>
+            <div>
+              <dt data-i18n="meta_setor">Setor</dt>
+              <dd data-i18n="meta_setor_v">Serviços logísticos</dd>
+            </div>
+            <div>
+              <dt data-i18n="meta_audit">Auditor independente</dt>
+              <dd>Grant Thornton</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="stock-card reveal" aria-label="Cotação SEQL3">
+          <div class="stock-card-head">
+            <div class="stock-card-meta">
+              <div class="stock-card-symbol">SEQL3 · B3</div>
+              <div class="stock-card-name" data-i18n="card_name">
+                Sequoia Logística e Transportes S.A.
+              </div>
+            </div>
+            <div class="stock-card-status">
+              <span class="pulse flat"></span>
+              <span data-i18n="card_status">Pregão</span>
+            </div>
+          </div>
+
+          <div class="stock-price-row">
+            <div class="stock-price">
+              <span class="stock-price-cur">R$</span>0,12
+            </div>
+            <div class="stock-change flat">0,00%</div>
+          </div>
+          <div class="stock-time">
+            <span data-i18n="card_updated">Atualizado em</span> 19/05/2026 ·
+            17:55 <span data-i18n="card_delay">(15 min. delay)</span>
+          </div>
+
+          <div class="stock-chart" aria-hidden="true">
+            <svg viewBox="0 0 600 130" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.4" />
+                  <stop offset="100%" stop-color="#FBBF24" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <line
+                x1="0"
+                y1="98"
+                x2="600"
+                y2="98"
+                class="stock-chart-baseline"
+                stroke="rgba(255,255,255,.06)"
+                stroke-dasharray="2 4"
+              />
+              <!-- area + line: a long downward slope flattening near zero -->
+              <path
+                d="M0,12 L40,18 L80,22 L120,30 L160,42 L200,55 L240,68 L280,78 L320,85 L360,92 L400,98 L440,101 L480,103 L520,104 L560,104 L600,104 L600,130 L0,130 Z"
+                fill="url(#g1)"
+              />
+              <path
+                d="M0,12 L40,18 L80,22 L120,30 L160,42 L200,55 L240,68 L280,78 L320,85 L360,92 L400,98 L440,101 L480,103 L520,104 L560,104 L600,104"
+                fill="none"
+                stroke="#FBBF24"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- markers -->
+              <circle cx="600" cy="104" r="3" fill="#FBBF24" />
+            </svg>
+          </div>
+
+          <div class="stock-stats">
+            <div>
+              <div class="stock-stat-label" data-i18n="ss_open">Abertura</div>
+              <div class="stock-stat-val">0,12</div>
+            </div>
+            <div>
+              <div class="stock-stat-label" data-i18n="ss_day">
+                Mín / Máx dia
+              </div>
+              <div class="stock-stat-val">0,10 — 0,13</div>
+            </div>
+            <div>
+              <div class="stock-stat-label" data-i18n="ss_52w">52 semanas</div>
+              <div class="stock-stat-val">0,10 — 20,08</div>
+            </div>
+            <div>
+              <div class="stock-stat-label" data-i18n="ss_vol">Volume</div>
+              <div class="stock-stat-val">412k</div>
+            </div>
+          </div>
+
+          <p class="stock-disclaim" data-i18n="card_disclaim">
+            Dados informativos. Cotações com atraso mínimo de 15 minutos,
+            fornecidas por terceiros. Para consulta em tempo real, acesse seu
+            home broker ou o site da B3.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================ KIT DO INVESTIDOR ================ -->
+    <section class="sec alt" id="kit">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-head-left">
+            <div class="eyebrow-sec" data-i18n="kit_eb">Kit do Investidor</div>
+            <h2 class="sec-title" data-i18n="kit_title">
+              Os documentos essenciais do trimestre, em três cliques.
+            </h2>
+          </div>
+          <a class="btn-link" href="#"
+            ><span data-i18n="kit_all">Central de Downloads</span> →</a
+          >
+        </div>
+
+        <div class="kit-grid reveal">
+          <a class="kit-card feat" href="#">
+            <div class="kit-period">3T25 · ITR</div>
+            <h3 data-i18n="kit_c1_t">Informações Trimestrais</h3>
+            <p data-i18n="kit_c1_p">
+              Demonstrações financeiras completas do 3º trimestre de 2025, com
+              notas explicativas e parecer dos auditores.
+            </p>
+            <div class="kit-arrow" aria-hidden="true">↓</div>
+          </a>
+          <a class="kit-card" href="#">
+            <div class="kit-period">3T25 · Release</div>
+            <h3 data-i18n="kit_c2_t">Release de Resultados</h3>
+            <p data-i18n="kit_c2_p">
+              Destaques operacionais e financeiros, com comentários da
+              administração sobre o trimestre.
+            </p>
+            <div class="kit-arrow" aria-hidden="true">↓</div>
+          </a>
+          <a class="kit-card" href="#">
+            <div class="kit-period">2026 · FR</div>
+            <h3 data-i18n="kit_c3_t">Formulário de Referência</h3>
+            <p data-i18n="kit_c3_p">
+              Documento integral exigido pela CVM, com informações detalhadas
+              sobre a companhia.
+            </p>
+            <div class="kit-arrow" aria-hidden="true">↓</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ ÚLTIMAS ATUALIZAÇÕES ================ -->
+    <section class="sec" id="updates">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-head-left">
+            <div class="eyebrow-sec" data-i18n="up_eb">
+              Últimas atualizações
+            </div>
+            <h2 class="sec-title" data-i18n="up_title">
+              Fatos relevantes e comunicados ao mercado.
+            </h2>
+          </div>
+          <a class="btn-link" href="#"
+            ><span data-i18n="up_all">Ver tudo</span> →</a
+          >
+        </div>
+
+        <div class="news-list reveal">
+          <a class="news-row" href="#">
+            <div class="news-date">12 / Mai / 2026</div>
+            <div class="news-tag fato" data-i18n="up_tag1">Fato Relevante</div>
+            <div class="news-title" data-i18n="up_n1">
+              Conclusão da reestruturação societária e ingresso de novo
+              acionista de referência.
+            </div>
+            <div class="news-go">→</div>
+          </a>
+          <a class="news-row" href="#">
+            <div class="news-date">22 / Abr / 2026</div>
+            <div class="news-tag com" data-i18n="up_tag2">Comunicado</div>
+            <div class="news-title" data-i18n="up_n2">
+              Desinvestimento da operação B2C e foco da Companhia em serviços
+              logísticos B2B.
+            </div>
+            <div class="news-go">→</div>
+          </a>
+          <a class="news-row" href="#">
+            <div class="news-date">27 / Mar / 2026</div>
+            <div class="news-tag res" data-i18n="up_tag3">Resultados</div>
+            <div class="news-title" data-i18n="up_n3">
+              Divulgação dos resultados do 3T25 — margem EBITDA recorrente de
+              31,3% no acumulado de nove meses.
+            </div>
+            <div class="news-go">→</div>
+          </a>
+          <a class="news-row" href="#">
+            <div class="news-date">19 / Nov / 2025</div>
+            <div class="news-tag fato" data-i18n="up_tag4">Fato Relevante</div>
+            <div class="news-title" data-i18n="up_n4">
+              Homologação de aumento de capital e nova composição acionária;
+              capital social passa a R$ 1,48 bilhão.
+            </div>
+            <div class="news-go">→</div>
+          </a>
+          <a class="news-row" href="#">
+            <div class="news-date">11 / Nov / 2025</div>
+            <div class="news-tag com" data-i18n="up_tag5">Comunicado</div>
+            <div class="news-title" data-i18n="up_n5">
+              Esclarecimentos sobre publicações na imprensa relativas ao plano
+              de recuperação operacional.
+            </div>
+            <div class="news-go">→</div>
+          </a>
+        </div>
+
+        <div class="news-foot">
+          <a class="btn btn-ghost" href="#">
+            <span data-i18n="up_all_btn">Histórico completo</span>
+            <span class="arr">→</span>
+          </a>
+          <span
+            class="mono"
+            style="font-size: 11px; color: var(--muted-2)"
+            data-i18n="up_mailing"
+            >Cadastre-se para receber alertas por e-mail →</span
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ PRÓXIMOS EVENTOS ================ -->
+    <section class="sec alt" id="eventos">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-head-left">
+            <div class="eyebrow-sec" data-i18n="ev_eb">Próximos eventos</div>
+            <h2 class="sec-title" data-i18n="ev_title">
+              Calendário do investidor.
+            </h2>
+          </div>
+          <a class="btn-link" href="#"
+            ><span data-i18n="ev_all">Agenda completa</span> →</a
+          >
+        </div>
+
+        <div class="events-grid reveal">
+          <article class="event">
+            <div class="event-date">
+              <div class="event-day">15</div>
+              <div class="event-mo">
+                MAI 2026<span data-i18n="ev_e1_d">Sexta-feira</span>
+              </div>
+            </div>
+            <h4 data-i18n="ev_e1_t">Divulgação dos resultados do 1T26</h4>
+            <p data-i18n="ev_e1_p">
+              Publicação após o fechamento do pregão. Release, ITR e materiais
+              de apoio na Central de Resultados.
+            </p>
+            <div class="event-foot">
+              <span data-i18n="ev_e1_loc">Online</span>
+              <span class="event-time">18:30 BRT</span>
+            </div>
+          </article>
+          <article class="event">
+            <div class="event-date">
+              <div class="event-day">16</div>
+              <div class="event-mo">
+                MAI 2026<span data-i18n="ev_e2_d">Sábado</span>
+              </div>
+            </div>
+            <h4 data-i18n="ev_e2_t">Teleconferência de resultados — 1T26</h4>
+            <p data-i18n="ev_e2_p">
+              Apresentação da administração seguida de sessão de perguntas e
+              respostas com analistas e investidores.
+            </p>
+            <div class="event-foot">
+              <span data-i18n="ev_e2_loc">Zoom · PT/EN</span>
+              <span class="event-time">10:00 BRT</span>
+            </div>
+          </article>
+          <article class="event">
+            <div class="event-date">
+              <div class="event-day">28</div>
+              <div class="event-mo">
+                MAI 2026<span data-i18n="ev_e3_d">Quinta-feira</span>
+              </div>
+            </div>
+            <h4 data-i18n="ev_e3_t">
+              Assembleia Geral Ordinária e Extraordinária
+            </h4>
+            <p data-i18n="ev_e3_p">
+              Aprovação das demonstrações financeiras de 2025, eleição do
+              Conselho e demais matérias de competência.
+            </p>
+            <div class="event-foot">
+              <span data-i18n="ev_e3_loc">Híbrida · São Paulo</span>
+              <span class="event-time">14:00 BRT</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ GOVERNANÇA ================ -->
+    <section class="sec" id="governanca">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-head-left">
+            <div class="eyebrow-sec" data-i18n="gov_eb">Governança</div>
+            <h2 class="sec-title" data-i18n="gov_title">
+              Liderança experiente, com obrigações do Novo Mercado.
+            </h2>
+          </div>
+        </div>
+
+        <div class="gov-intro reveal">
+          <p class="sec-sub" data-i18n="gov_intro_main">
+            A Sequoia é listada no segmento Novo Mercado da B3 — o de mais alto
+            nível de governança no mercado brasileiro de capitais, com tag along
+            de 100%, 20% mínimo de conselheiros independentes e arbitragem como
+            foro para conflitos societários.
+          </p>
+          <div class="gov-intro-side">
+            <strong data-i18n="gov_side_t">Compromissos vigentes</strong>
+            <span data-i18n="gov_side_p"
+              >Política de divulgação de informações, política de negociação de
+              valores mobiliários, código de ética e canal de denúncias
+              independente — disponíveis no menu Documentos CVM.</span
+            >
+          </div>
+        </div>
+
+        <h3 class="gov-sub" data-i18n="gov_board_title">
+          Conselho de Administração
+        </h3>
+
+        <div class="board-grid reveal" id="board-conselho">
+          <div class="board-member">
+            <div class="board-avatar">MT</div>
+            <div class="board-role" data-i18n="b1_role">
+              Presidente do Conselho · Membro do Comitê de Auditoria
+            </div>
+            <div class="board-name">Marcelo Adilson Tavarone Torresi</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 04/2025 — AGO 2027
+            </div>
+            <div class="board-bio" data-i18n="b1_bio">
+              Engenheiro pela Escola Politécnica da USP, com especializações em
+              Gestão Estratégica (Finanças, RH, Operações e Logística,
+              Marketing) pela FGV. Diretor-Geral da Torresi&amp;Associados;
+              membro efetivo dos Conselhos de Administração do Banco Pan,
+              Paranapanema e Rossi Residencial; membro do Conselho Fiscal da
+              Bombril. Foi CEO no Banco Paulista, SOCOPA e Banco Pecúnia, e
+              Diretor da Pilotage Investimentos e da Silex Business Consulting.
+            </div>
+          </div>
+          <div class="board-member">
+            <div class="board-avatar">MM</div>
+            <div class="board-role" data-i18n="b2_role">Vice-Presidente</div>
+            <div class="board-name">Marcelo Sanchez Martins</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 04/2025 — AGO 2027
+            </div>
+            <div class="board-bio" data-i18n="b2_bio">
+              Engenheiro Elétrico pela UNICAMP, com passagem pelo Karlsruhe
+              Institute of Technology (KIT), Alemanha. MBA pela Harvard Business
+              School. Mais de 25 anos em Tecnologia, Private Equity e Mercado de
+              Capitais (Goldman Sachs, GP Investimentos, Axiom Capital).
+              Cofundador da Spring Wireless. Managing Partner e cofundador da
+              Jive Investments, atuando em Special Situations.
+            </div>
+          </div>
+          <div class="board-member">
+            <div class="board-avatar">EF</div>
+            <div class="board-role" data-i18n="b3_role">Membro do Conselho</div>
+            <div class="board-name">Eduardo Gomes Fernandes</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 03/2026 —
+              <span data-i18n="next_ago">próxima AGO</span>
+            </div>
+            <div class="board-bio" data-i18n="b3_bio">
+              Engenheiro Químico pela FEI (melhor aluno de sua turma em 1997),
+              com Programa de Desenvolvimento de Conselheiros pela Fundação Dom
+              Cabral (2025). Acionista e conselheiro em empresas como Grupo
+              Saceem (Uruguai), RCRambiental, Costa Urbana Shopping, Rutas del
+              Litoral, GVC e ARNET. Foi Vice-Presidente de Serviços Corporativos
+              do Grupo Saceem (2008–2025). CEO da RCRambiental desde 2009.
+            </div>
+          </div>
+          <div class="board-member">
+            <div class="board-avatar">AM</div>
+            <div class="board-role" data-i18n="b4_role">
+              Membro efetivo do Conselho
+            </div>
+            <div class="board-name">Armando Marchesan Neto</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 04/2025 — AGO 2027
+            </div>
+            <div class="board-bio" data-i18n="b4_bio">
+              Engenheiro de Produção e Mestre pela UNIMEP, MBA executivo pelo
+              Insper (2006), pós-graduação em Supply Chain &amp; Operations pelo
+              MIT (2010). Antes da Sequoia, foi Diretor de Serviços aos Clientes
+              da Natura, responsável por distribuição, transporte e atendimento
+              pós-venda. Também atuou como Diretor de Operações &amp; Logística
+              do Submarino.com e da B2W.
+            </div>
+          </div>
+          <div class="board-member">
+            <div class="board-avatar">GJ</div>
+            <div class="board-role" data-i18n="b5_role">
+              Membro efetivo do Conselho
+            </div>
+            <div class="board-name">Guilherme Rodrigues Alves Juliani</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 04/2025 — AGO 2027
+            </div>
+            <div class="board-bio" data-i18n="b5_bio">
+              Sólida formação em logística, operações e inovação. Administrador
+              de empresas pela PUC-RJ, pós-graduado em Gestão de Transportes
+              pela Fundação Dom Cabral, com cursos de extensão por Harvard,
+              Oxford e INSEAD. Atuou nos últimos 17 anos como CEO do Grupo
+              Move3.
+            </div>
+          </div>
+        </div>
+
+        <h3 class="gov-sub" style="margin-top: 80px" data-i18n="gov_dir_title">
+          Diretoria Estatutária
+        </h3>
+
+        <div class="board-grid reveal" id="board-diretoria">
+          <div class="board-member">
+            <div class="board-avatar">LB</div>
+            <div class="board-role" data-i18n="d1_role">
+              Diretor Presidente (CEO), CFO e Relações com Investidores
+            </div>
+            <div class="board-name">Leopoldo de Bruggen e Silva</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 05/2024 — AGO
+              <span data-i18n="ago_2027">contas 2027</span>
+            </div>
+            <div class="board-bio" data-i18n="d1_bio">
+              Graduado em Administração de Empresas pela Universidade FUMEC e em
+              Ciências Contábeis pela PUC-MG; MBA em Gestão Empresarial pela
+              Fundação Dom Cabral. Experiência em PwC, Oi, International Paper,
+              Ferbasa, Ebrasil Energia e Grupo NC. Conduziu a reestruturação
+              exitosa da Estre Ambiental entre março de 2021 e março de 2025.
+            </div>
+          </div>
+          <div class="board-member">
+            <div class="board-avatar">DR</div>
+            <div class="board-role" data-i18n="d2_role">
+              Diretor Jurídico e de Recursos Humanos
+            </div>
+            <div class="board-name">Diego Oliveira da Ressurreição</div>
+            <div class="board-term mono">
+              <span data-i18n="term">Mandato</span> 12/2025 — AGO
+              <span data-i18n="ago_2027">contas 2027</span>
+            </div>
+            <div class="board-bio" data-i18n="d2_bio">
+              Graduado em Direito pela Universidade Federal da Bahia,
+              pós-graduado em Relações Empresariais do Trabalho pela FGV, LLM em
+              Direito Corporativo pela Queen Mary University of London e MBA
+              Executivo pelo Insper. Certificações em Compliance (KPMG) e
+              Reestruturação de Empresas (Insper). Conduziu a reestruturação da
+              Estre Ambiental (jul/2019–abr/2024) e atua na reestruturação da
+              Sequoia desde maio de 2024.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ DOCUMENTOS CVM ================ -->
+    <section class="sec alt" id="documentos">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div class="sec-head-left">
+            <div class="eyebrow-sec" data-i18n="doc_eb">Documentos CVM</div>
+            <h2 class="sec-title" data-i18n="doc_title">
+              Tudo o que a regulação exige — e mais um pouco.
+            </h2>
+          </div>
+          <a class="btn-link" href="#"
+            ><span data-i18n="doc_all">Acessar repositório</span> →</a
+          >
+        </div>
+
+        <div class="docs-grid reveal">
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_1">Fatos Relevantes</div>
+              <div class="doc-meta">
+                <span data-i18n="doc_1m">42 documentos</span
+                ><span class="dot"></span
+                ><span data-i18n="doc_1u">atualizado em 12/Mai</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_2">
+                Comunicados ao Mercado
+              </div>
+              <div class="doc-meta">
+                <span data-i18n="doc_2m">128 documentos</span
+                ><span class="dot"></span
+                ><span data-i18n="doc_2u">atualizado em 02/Mai</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_3">
+                Formulário de Referência
+              </div>
+              <div class="doc-meta">
+                <span data-i18n="doc_3m">Versão 2026</span
+                ><span class="dot"></span
+                ><span data-i18n="doc_3u">vigente</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_4">Estatuto Social</div>
+              <div class="doc-meta">
+                <span data-i18n="doc_4m">Consolidado</span
+                ><span class="dot"></span
+                ><span data-i18n="doc_4u">19/Nov/2025</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_5">
+                Políticas Corporativas
+              </div>
+              <div class="doc-meta">
+                <span data-i18n="doc_5m"
+                  >Divulgação · Negociação · Remuneração</span
+                >
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_6">
+                Assembleias e Reuniões
+              </div>
+              <div class="doc-meta">
+                <span data-i18n="doc_6m">Editais, atas e propostas</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_7">Composição Acionária</div>
+              <div class="doc-meta">
+                <span data-i18n="doc_7m">11.382.987 ações ON</span
+                ><span class="dot"></span
+                ><span data-i18n="doc_7u">FF atualizado</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_8">Instrução CVM 358</div>
+              <div class="doc-meta">
+                <span data-i18n="doc_8m">Negociações de administradores</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+          <a class="doc" href="#">
+            <div>
+              <div class="doc-name" data-i18n="doc_9">
+                Informe de Governança
+              </div>
+              <div class="doc-meta">
+                <span data-i18n="doc_9m">B3 · Pratique ou explique</span>
+              </div>
+            </div>
+            <span class="doc-go"
+              ><span data-i18n="doc_open">Abrir</span
+              ><span class="arr">→</span></span
+            >
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ CONTATO / SERVIÇOS ================ -->
+    <section class="contact-section" id="contato">
+      <div class="contact-grid reveal">
+        <div>
+          <div
+            class="eyebrow-sec"
+            style="color: var(--orange-light); margin-bottom: 18px"
+            data-i18n="ct_eb"
+          >
+            Fale com o RI
+          </div>
+          <h2>
+            <span data-i18n="ct_t1">Pergunte.</span>
+            <span class="alt" data-i18n="ct_t2">Acompanhe.</span>
+            <span data-i18n="ct_t3">Cadastre-se.</span>
+          </h2>
+          <p class="lede" data-i18n="ct_sub">
+            A equipe de Relações com Investidores responde dúvidas de
+            acionistas, analistas e da imprensa em até dois dias úteis.
+          </p>
+          <div
+            style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px"
+          >
+            <a class="btn btn-orange" href="mailto:ri@sequoialog.com.br">
+              <span data-i18n="ct_cta1">Enviar mensagem</span>
+              <span class="arr">→</span>
+            </a>
+            <a
+              class="btn btn-ghost"
+              style="border-color: rgba(255, 255, 255, 0.18); color: #fff"
+              href="#"
+            >
+              <span data-i18n="ct_cta2">Cadastre-se no mailing</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <div class="row">
+            <div class="lbl" data-i18n="ct_l1">E-mail</div>
+            <div class="val">
+              <a href="mailto:ri@sequoialog.com.br">ri@sequoialog.com.br</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="lbl" data-i18n="ct_l2">Endereço</div>
+            <div class="val" data-i18n="ct_l2v">
+              Av. Yojiro Takaoka, 4.384 — Alphaville · Santana de Parnaíba · SP
+            </div>
+          </div>
+          <div class="row">
+            <div class="lbl" data-i18n="ct_l3">Canal de denúncias</div>
+            <div class="val mono">contatoseguro.com.br/grupomove3sequoia</div>
+          </div>
+          <div class="row">
+            <div class="lbl" data-i18n="ct_l4">Informe de rendimentos</div>
+            <div class="val">
+              <a href="#" data-i18n="ct_l4v">Acessar área do acionista</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================ FOOTER ================ -->
+    <footer class="foot">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <div class="mark">
+            <span class="brand-mark">S</span>
+            <span>Sequoia</span>
+          </div>
+          <p data-i18n="foot_p">
+            Sequoia Logística e Transportes S.A. — companhia de capital aberto
+            listada no segmento Novo Mercado da B3 sob o ticker SEQL3.
+          </p>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot_c1">Investidores</h5>
+          <ul>
+            <li><a href="#cotacao" data-i18n="fl_1">Cotações</a></li>
+            <li><a href="#kit" data-i18n="fl_2">Kit do investidor</a></li>
+            <li><a href="#updates" data-i18n="fl_3">Comunicados</a></li>
+            <li><a href="#eventos" data-i18n="fl_4">Calendário</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot_c2">Governança</h5>
+          <ul>
+            <li><a href="#governanca" data-i18n="fl_5">Conselho</a></li>
+            <li><a href="#documentos" data-i18n="fl_6">Estatuto</a></li>
+            <li><a href="#documentos" data-i18n="fl_7">Políticas</a></li>
+            <li>
+              <a href="#documentos" data-i18n="fl_8">Composição acionária</a>
+            </li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5 data-i18n="foot_c3">Companhia</h5>
+          <ul>
+            <li>
+              <a href="https://www.sequoialog.com.br/" data-i18n="fl_9"
+                >Site institucional</a
+              >
+            </li>
+            <li><a href="#contato" data-i18n="fl_10">Fale com o RI</a></li>
+            <li><a href="#" data-i18n="fl_11">Canal de denúncias</a></li>
+            <li><a href="#" data-i18n="fl_12">Carreiras</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bot">
+        <span>© 2026 Sequoia Logística e Transportes S.A.</span>
+        <div class="links">
+          <a href="#" data-i18n="foot_priv">Política de Privacidade</a>
+          <a href="#" data-i18n="foot_terms">Termos de uso</a>
+          <a href="#" data-i18n="foot_map">Mapa do site</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ============ I18N (PT / EN) ============
+      const i18n = {
+        pt: {}, // pt is the source text, populated on first load
+        en: {
+          brand: "Sequoia",
+          brand_sub: "Investor Relations",
+          nav_site: "← Corporate site",
+          nav_about: "Company",
+          nav_gov: "Governance",
+          nav_fin: "Financials",
+          nav_docs: "CVM Filings",
+          nav_serv: "Services",
+          subnav_label: "Investors",
+          sn_quote: "Quote",
+          sn_kit: "Investor Kit",
+          sn_high: "Highlights",
+          sn_news: "Announcements",
+          sn_events: "Events",
+          sn_gov: "Governance",
+          sn_docs: "CVM Filings",
+          sn_contact: "Contact IR",
+
+          hero_eb: "Investor Relations",
+          hero_t1: "Transformation",
+          hero_t2: "in progress.",
+          hero_sub:
+            "Sequoia is going through a restructuring cycle centered on B2B logistics, operational efficiency and financial discipline. Find here the company's results, announcements and governance.",
+          hero_cta1: "Q3 2025 Investor Kit",
+          hero_cta2: "Latest announcements",
+
+          stock_eb: "Quote · B3 Novo Mercado",
+          stock_title: "SEQL3 — an honest read of a turning point.",
+          stock_sub:
+            "The ticker reflects the ongoing operational and corporate restructuring. The company stays focused on B2B, Novo Mercado governance and timely market disclosures.",
+          meta_segment: "Listing segment",
+          meta_isin: "ISIN code",
+          meta_setor: "Sector",
+          meta_setor_v: "Logistics services",
+          meta_audit: "Independent auditor",
+          card_name: "Sequoia Logística e Transportes S.A.",
+          card_status: "Live",
+          card_updated: "Updated",
+          card_delay: "(15 min. delay)",
+          ss_open: "Open",
+          ss_day: "Day low / high",
+          ss_52w: "52-week range",
+          ss_vol: "Volume",
+          card_disclaim:
+            "Informational data. Quotes delayed by at least 15 minutes, provided by third parties. For real-time data, use your broker or B3's site.",
+
+          kit_eb: "Investor Kit",
+          kit_title:
+            "The essential documents of the quarter — three clicks away.",
+          kit_all: "Downloads center",
+          kit_c1_t: "Quarterly Information (ITR)",
+          kit_c1_p:
+            "Full financial statements for the third quarter of 2025, with notes and auditor's report.",
+          kit_c2_t: "Earnings Release",
+          kit_c2_p:
+            "Operational and financial highlights, with management commentary on the quarter.",
+          kit_c3_t: "Reference Form",
+          kit_c3_p:
+            "Full document required by CVM, with detailed information about the company.",
+
+          hi_eb: "Operational highlights",
+          hi_title: "The scale behind the service.",
+          hi_sub:
+            "Consolidated indicators of the logistics model — installed base, national coverage and service level sustained through restructuring.",
+          stat1: "Own bases in operation across Brazil.",
+          stat2: "Operational bases between own and partner.",
+          stat3: "Municipalities served nationwide.",
+          stat4: "Gross Leasable Area (GLA) operated.",
+          stat6: "Strategic acquisitions since 2012.",
+
+          up_eb: "Latest updates",
+          up_title: "Material facts and market announcements.",
+          up_all: "See all",
+          up_tag1: "Material Fact",
+          up_tag2: "Announcement",
+          up_tag3: "Results",
+          up_tag4: "Material Fact",
+          up_tag5: "Announcement",
+          up_n1:
+            "Conclusion of the corporate restructuring and onboarding of a new reference shareholder.",
+          up_n2:
+            "Divestiture of the B2C operation; company focuses on B2B logistics services.",
+          up_n3:
+            "Q3 2025 results disclosed — recurring EBITDA margin of 31.3% in the first nine months.",
+          up_n4:
+            "Capital increase ratified and new shareholder composition; share capital reaches R$ 1.48 billion.",
+          up_n5:
+            "Clarifications on press coverage relating to the operational recovery plan.",
+          up_all_btn: "Full history",
+          up_mailing: "Sign up for e-mail alerts →",
+
+          ev_eb: "Upcoming events",
+          ev_title: "Investor calendar.",
+          ev_all: "Full agenda",
+          ev_e1_d: "Friday",
+          ev_e1_t: "Q1 2026 earnings release",
+          ev_e1_p:
+            "After market close. Release, ITR and supporting materials on the Results Center.",
+          ev_e1_loc: "Online",
+          ev_e2_d: "Saturday",
+          ev_e2_t: "Q1 2026 earnings call",
+          ev_e2_p:
+            "Management presentation followed by Q&A with analysts and investors.",
+          ev_e2_loc: "Zoom · PT/EN",
+          ev_e3_d: "Thursday",
+          ev_e3_t: "Annual & Extraordinary Shareholders' Meeting",
+          ev_e3_p:
+            "Approval of 2025 financial statements, board election and other matters.",
+          ev_e3_loc: "Hybrid · São Paulo",
+
+          gov_eb: "Governance",
+          gov_title: "Experienced leadership, under Novo Mercado standards.",
+          gov_intro_main:
+            "Sequoia is listed on B3's Novo Mercado segment — the highest governance tier in Brazil's capital markets, with 100% tag along, at least 20% independent directors and arbitration as the venue for corporate disputes.",
+          gov_side_t: "Active commitments",
+          gov_side_p:
+            "Disclosure policy, securities trading policy, code of ethics and an independent whistleblower channel — all available under CVM Filings.",
+          gov_board_title: "Board of Directors",
+          term: "Term",
+          next_ago: "next AGM",
+          ago_2027: "FY 2027 accounts",
+          gov_dir_title: "Statutory Board (Diretoria)",
+
+          b1_role: "Chairman of the Board · Audit Committee Member",
+          b1_bio:
+            "Engineer from USP Polytechnic, with FGV specializations in Strategic Management (Finance, HR, Operations & Logistics, Marketing). Managing Director of Torresi&Associados; sitting board member at Banco Pan, Paranapanema and Rossi Residencial; member of Bombril's Fiscal Council. Former CEO of Banco Paulista, SOCOPA and Banco Pecúnia; former Director at Pilotage Investimentos and Silex Business Consulting.",
+          b2_role: "Vice-Chairman",
+          b2_bio:
+            "Electrical Engineer (UNICAMP), with studies at Karlsruhe Institute of Technology, Germany. MBA from Harvard Business School. 25+ years in Tech, Private Equity and Capital Markets (Goldman Sachs, GP Investimentos, Axiom Capital). Co-founder of Spring Wireless. Managing Partner and co-founder of Jive Investments, active in Special Situations.",
+          b3_role: "Board Member",
+          b3_bio:
+            "Chemical Engineer from FEI (top of his 1997 class), with Board Director Program from Fundação Dom Cabral (2025). Shareholder and director at Grupo Saceem (Uruguay), RCRambiental, Costa Urbana Shopping, Rutas del Litoral, GVC and ARNET. Former VP of Corporate Services at Grupo Saceem (2008–2025). CEO of RCRambiental since 2009.",
+          b4_role: "Effective Board Member",
+          b4_bio:
+            "Production Engineer and Master's from UNIMEP, MBA from Insper (2006), Supply Chain & Operations post-graduate from MIT (2010). Before Sequoia, served as Director of Customer Services at Natura, leading distribution, transportation and after-sales. Also Director of Operations & Logistics at Submarino.com and B2W.",
+          b5_role: "Effective Board Member",
+          b5_bio:
+            "Strong background in logistics, operations and innovation. Business Administration from PUC-RJ, postgraduate in Transport Management from Fundação Dom Cabral, with executive education at Harvard, Oxford and INSEAD. Spent the last 17 years as CEO of Grupo Move3.",
+
+          d1_role:
+            "Chief Executive Officer, CFO and Investor Relations Officer",
+          d1_bio:
+            "Business Administration from Universidade FUMEC and Accounting from PUC-MG; MBA in Business Management from Fundação Dom Cabral. Experience at PwC, Oi, International Paper, Ferbasa, Ebrasil Energia and Grupo NC. Led the successful restructuring of Estre Ambiental between March 2021 and March 2025.",
+          d2_role: "Legal and HR Officer",
+          d2_bio:
+            "Law degree from Universidade Federal da Bahia, postgraduate in Labor Relations from FGV, LLM in Corporate Law from Queen Mary University of London and Executive MBA from Insper. Certified in Compliance (KPMG) and Corporate Restructuring (Insper). Led Estre Ambiental's restructuring (Jul/2019–Apr/2024); leading Sequoia's restructuring since May 2024.",
+
+          doc_eb: "CVM Filings",
+          doc_title: "Everything regulation requires — and a bit more.",
+          doc_all: "Open repository",
+          doc_open: "Open",
+          doc_1: "Material Facts",
+          doc_1m: "42 documents",
+          doc_1u: "updated May 12",
+          doc_2: "Market Announcements",
+          doc_2m: "128 documents",
+          doc_2u: "updated May 02",
+          doc_3: "Reference Form",
+          doc_3m: "2026 version",
+          doc_3u: "current",
+          doc_4: "Bylaws",
+          doc_4m: "Consolidated",
+          doc_4u: "Nov 19, 2025",
+          doc_5: "Corporate Policies",
+          doc_5m: "Disclosure · Trading · Compensation",
+          doc_6: "Meetings & Resolutions",
+          doc_6m: "Calls, minutes and proposals",
+          doc_7: "Shareholder Composition",
+          doc_7m: "11,382,987 common shares",
+          doc_7u: "FF updated",
+          doc_8: "CVM Instruction 358",
+          doc_8m: "Managers' trading",
+          doc_9: "Governance Report",
+          doc_9m: "B3 · Comply or explain",
+
+          ct_eb: "Contact IR",
+          ct_t1: "Ask.",
+          ct_t2: "Follow.",
+          ct_t3: "Subscribe.",
+          ct_sub:
+            "The Investor Relations team replies to shareholders, analysts and the press within two business days.",
+          ct_cta1: "Send a message",
+          ct_cta2: "Sign up for the mailing list",
+          ct_l1: "E-mail",
+          ct_l2: "Address",
+          ct_l2v:
+            "Av. Yojiro Takaoka, 4,384 — Alphaville · Santana de Parnaíba · SP · Brazil",
+          ct_l3: "Whistleblower channel",
+          ct_l4: "Earnings statements",
+          ct_l4v: "Access the shareholder area",
+
+          foot_p:
+            "Sequoia Logística e Transportes S.A. — publicly listed company on B3's Novo Mercado segment under the ticker SEQL3.",
+          foot_c1: "Investors",
+          foot_c2: "Governance",
+          foot_c3: "Company",
+          fl_1: "Quote",
+          fl_2: "Investor kit",
+          fl_3: "Announcements",
+          fl_4: "Calendar",
+          fl_5: "Board",
+          fl_6: "Bylaws",
+          fl_7: "Policies",
+          fl_8: "Shareholder composition",
+          fl_9: "Corporate site",
+          fl_10: "Contact IR",
+          fl_11: "Whistleblower channel",
+          fl_12: "Careers",
+          foot_priv: "Privacy Policy",
+          foot_terms: "Terms of use",
+          foot_map: "Sitemap",
+        },
+      };
+
+      // capture PT defaults from the DOM
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        i18n.pt[el.dataset.i18n] = el.innerHTML;
+      });
+
+      function applyLang(lang) {
+        document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.dataset.i18n;
+          const v = i18n[lang][k];
+          if (v != null) el.innerHTML = v;
+        });
+        document.querySelectorAll(".lang-toggle button").forEach((b) => {
+          b.classList.toggle("on", b.dataset.lang === lang);
+        });
+      }
+      document.querySelectorAll(".lang-toggle button").forEach((b) => {
+        b.addEventListener("click", () => applyLang(b.dataset.lang));
+      });
+
+      // ============ REVEAL ============
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>
